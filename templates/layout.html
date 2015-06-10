@@ -18,13 +18,13 @@
   {% include 'header.html' %}
   {% block body %}
   <div class="row content">
-      <div class="small-12 medium-9 columns">
-        {% block content %}
-        {% endblock content %}
-      </div>
+      {% block content %}
+      {% endblock content %}
   </div>
   {% endblock body %}
   {% include 'footer.html' %}
+  {% block scripts %}
+  {% endblock scripts %}
   <script src="js/vendor/jquery.js"></script>
   <script src="js/foundation.min.js"></script>
   <script>

@@ -1,0 +1,14 @@
+.row {
+    max-width: 75em;
+}
+
+.logo {
+    max-height: 70px;
+    margin: 10px 10px;
+}
+
+#footer {
+  padding-top: 10px;
+  border-top: 1px solid grey;
+  margin-top: 20px;
+}

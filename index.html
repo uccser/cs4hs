@@ -3,5 +3,35 @@
 {% block title %}CS4HS{% endblock %}
 
 {% block content %}
-<h1>CS4HS 2015</h1>
+<div class="small-12 medium-4 large-3 columns">
+    <h2>Welcome!</h2>
+
+    <p>Welcome to the website for the Christchurch Computer Science for High Schools conference, at the University of Canterbury in December 2015. Our conference is focused on preparing for the computer science and programming achievement standards for NCEA. The conference is primarily funded through Google's <a href="http://www.cs4hs.com/">CS4HS Grant Program</a>.</p>
+
+    <p>This website will tell you everything you need to know about the conference including a <a href="./timetable.html">full timetable of the conference</a>,
+    information about <a href="./location.html">transport and locations</a> for the event, and <a href="./resources.html">useful links to materials</a> you may find useful throughout the conference.</p>
+
+    <p>This year the main conference will run over three days from the 2nd to 4th of December, with an optional 2 day workshop running before the conference (30th November to 1st December). If it's your first time attending the main conference starts at 9am on the Wednesday with a special introduction session. If you are a returning attendee, the conference starts at 10:30am, however you are welcome to arrive earlier to register and there will be room available in our "Hub" room to chat and relax. The conference also finishes offically with lunch on Friday, however an optional unconference event will be running for those with later flights.</p>
+
+    <p>If you are looking for information about the Wellington or Auckland conferences, looking to contact us, or wanting to read the FAQ, you can find all this information on the <a href="./about.html">about page</a>.</p>
+</div>
+<div class="small-12 medium-8 large-6 columns">
+  <h2>Timetable</h2>
+</div>
+<div class="small-12 medium-12 large-3 columns">
+  <h2>Updates</h2>
+  <div class="text-center">
+  <a class="twitter-timeline"
+     href="https://twitter.com/UCCSEd"
+     data-widget-id="525448302553083904"
+     data-chrome="noheader nofooter noscrollbar transparent"
+     height="900">
+  </a>
+  </div>
+</div>
 {% endblock content %}
+
+{% block scripts %}
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endblock scripts %}
