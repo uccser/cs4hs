@@ -37,6 +37,7 @@ def write_html(html, file):
     try:
         with open(file_name, 'w', encoding='utf8') as output_file:
             output_file.write(html)
+            print('Created {}'.format(file))
     except:
         print("Cannot write {0}".format(file))
 
