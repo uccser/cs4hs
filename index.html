@@ -9,14 +9,57 @@
     <p>Welcome to the website for the Christchurch Computer Science for High Schools conference, at the University of Canterbury in December 2015. Our conference is focused on preparing for the computer science and programming achievement standards for NCEA. The conference is primarily funded through Google's <a href="http://www.cs4hs.com/">CS4HS Grant Program</a>.</p>
 
     <p>This website will tell you everything you need to know about the conference including a <a href="./timetable.html">full timetable of the conference</a>,
-    information about <a href="./location.html">transport and locations</a> for the event, and <a href="./resources.html">useful links to materials</a> you may find useful throughout the conference.</p>
+    information about <a href="./transport.html">transport</a> and <a href="./location.html">locations</a> for the event, and <a href="./resources.html">useful links to materials</a> you may find useful throughout the conference.</p>
 
     <p>This year the main conference will run over three days from the 2nd to 4th of December, with an optional 2 day workshop running before the conference (30th November to 1st December). If it's your first time attending the main conference starts at 9am on the Wednesday with a special introduction session. If you are a returning attendee, the conference starts at 10:30am, however you are welcome to arrive earlier to register and there will be room available in our "Hub" room to chat and relax. The conference also finishes offically with lunch on Friday, however an optional unconference event will be running for those with later flights.</p>
 
     <p>If you are looking for information about the Wellington or Auckland conferences, looking to contact us, or wanting to read the FAQ, you can find all this information on the <a href="./about.html">about page</a>.</p>
 </div>
 <div class="small-12 medium-8 large-6 columns">
-  <h2>Timetable</h2>
+  <h2>Schedule</h2>
+  {% raw %}
+  <div id="current">
+  <script id="schedule-template" type="text/x-handlebars-template">
+    <div class="event">
+    {{#ifSameDate cells.DateTime}}
+    <h3 class="text-center">{{prettifyDate cells.DateTime "dddd Do MMMM"}}</h3>
+    {{/ifSameDate}}
+    {{#ifDifferentTimeLine cells.DateTime}}
+    <span class="small-12 columns underline"></span>
+    {{else}}
+    <span class="small-8 small-offset-2 medium-10 medium-offset-2 columns underline"></span>
+    {{/ifDifferentTimeLine}}
+    <div class="row current-event">
+        <span class="small-12 medium-3 columns">
+            {{#ifDifferentTime cells.DateTime}}
+            <h3>{{prettifyDate cells.DateTime "h:mma"}}</h3>
+            {{else}}
+            <h4 class="text-center">or</h4>
+            {{/ifDifferentTime}}
+            {{#if cells.Location}}
+            <p><b>Location</b><br>{{cells.Location}}</p>
+            {{/if}}
+            {{#if cells.Speaker}}
+            <p><b>Presenter</b><br>{{cells.Speaker}}</p>
+            {{/if}}
+        </span>
+        <span class="small-12 medium-9 columns">
+            <h4>{{cells.Title}}</h4>
+            <p class="description">{{cells.Description}}</p>
+        </span>
+    </div>
+    </div>
+  </script>
+  </div>
+  {% endraw %}
+  <div id="schedule-loading">
+      <h3 class="text-center">Loading events...</h3>
+  </div>
+  <div id="full-schedule-button" class="hide">
+      <a href="./timetable.html" class="button expand">Full schedule</a>
+  </div>
+
+
 </div>
 <div class="small-12 medium-12 large-3 columns">
   <h2>Updates</h2>
@@ -32,6 +75,68 @@
 {% endblock content %}
 
 {% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<!-- Load Moment.js -->
+<script src="./js/moment.min.js"></script>
 <!-- Twitter script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var source = $('#schedule-template').html();
+  var CurrentTemplate = Handlebars.compile(source);
+
+  var SameDate = "";
+  var SameDateTime = "";
+  var Time = "";
+  var TimeLine = "";
+
+  Handlebars.registerHelper("prettifyDate", function(timestamp, formatString) {
+      return moment(new Date(timestamp)).format(formatString);
+  });
+
+  Handlebars.registerHelper('ifSameDate', function(v1, options) {
+      if(v1.substring(0, 5) !== SameDate.substring(0, 5)) {
+          SameDate = v1;
+          return options.fn(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTime', function(v1, options) {
+      if(v1 !== Time) {
+          Time = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTimeLine', function(v1, options) {
+      if(v1 !== TimeLine) {
+          TimeLine = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  var now = moment().subtract(10, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+
+  // Load an entire sheet.
+  $('#current').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1BdOk8QH8H1UW0jfN7_-7-T8TOMU9u0_nhYZ99fI1flA/edit#gid=0',
+      query: 'select A,B,C,D,E',
+      rowTemplate: CurrentTemplate,
+      fetchSize: 7,
+      callback: showScheduleButton
+  });
+
+  function showScheduleButton() {
+      $("#schedule-loading").addClass('hide');
+      $("#full-schedule-button").removeClass('hide');
+  }
+</script>
 {% endblock scripts %}
