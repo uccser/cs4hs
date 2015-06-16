@@ -3,5 +3,77 @@
 {% block title %}About - CS4HS{% endblock %}
 
 {% block content %}
-<h1>About CS4HS</h1>
+<div class="small-12 large-6 columns">
+  <h2>About</h2>
+  <p>This year there are four independent CS4HS workshops running throughout New Zealand. Our conference in Christchurch is focused on the Computer Science and Programming Achievement standards, for teachers who are at beginner/intermediate level, so the discussions will be more focussed on getting started.</p>
+
+  <p>The Victoria one would be more general, looking more at areas of computer science that are of general interest, even if they are outside the standards (this is the model used for CS4HS overseas, and gives a broader view of the topic, which would be more suitable for those already teaching the standards.) Unitec will be running a CS4HS workshop this year in Auckland, which is likely to cover mobile applications and devices, cyber-security, artificial intelligence, and robotics. In Dunedin, Google is funding teachers to learn some robotics, held at the University of Otago. Details for these conferences can be found at the links below.</p>
+
+  <p>While the organisers of the three events will be working together to coordinate, the events will essentially be independent and covering different areas, so it's fine to apply to go to more than one (if you have the time!).</p>
+
+
+  <h2>Useful Links</h2>
+  <h4>Previous Conference Websites</h4>
+  <p><a href="./2014/index.html">2014 conference website</a></p>
+  <p><a href="./2013/index.html">2013 conference website</a></p>
+
+  <h4>Other New Zealand CS4HS Conferences</h4>
+  <p><a href="http://cs4hs.unitec.ac.nz/"><strong>Auckland</strong> - Date TBA</a></p>
+  <p><a href="http://ecs.victoria.ac.nz/Events/CS4HS2015"><strong>Wellington</strong> - Date TBA</a></p>
+  <p><a href="http://robocupjunior.org.nz/regions/teacher_workshops.php"><strong>Dunedin</strong> - Various dates</a></p>
+
+  <h4>Contacts</h4>
+  <div class="row">
+  <span class="small-12 medium-6 columns">
+      <address>
+          <strong>Jack Morgan</strong><br>
+          For general and website enquiries<br>
+          email: <a href="mailto:jack.morgan@canterbury.ac.nz">jack.morgan@canterbury.ac.nz</a>
+      </address>
+  </span>
+  <span class="small-12 medium-6 columns">
+      <address>
+          <strong>Tim Bell</strong><br>
+          For press enquiries<br>
+          email: <a href="mailto:tim.bell@canterbury.ac.nz">tim.bell@canterbury.ac.nz</a>
+      </address>
+  </span>
+  </div>
+</div>
+<div class="small-12 large-6 columns">
+  <h2>Frequently Asked Questions</h2>
+
+  {% raw %}
+  <div id="faq">
+  <script id="faq-template" type="text/x-handlebars-template">
+      <h4>{{cells.Question}}</h4>
+      <p>{{cells.Answer}}</p>
+  </script>
+  </div>
+  {% endraw %}
+  <div id="faq-loading">
+      <h4 class="text-center">Loading FAQ...</h4>
+  </div>
+</div>
 {% endblock content %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var faqTemplate = Handlebars.compile($('#faq-template').html());
+  // Load an entire sheet.
+  $('#faq').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1zwzSnuplPI8KPinU_n72Vc3pGgKx_ldNwucipSOgcEQ/edit#gid=0',
+      query: 'select A,B',
+      rowTemplate: faqTemplate,
+      callback: removeLoading
+  });
+  function removeLoading() {
+      $("#faq-loading").addClass('hide');
+  }
+</script>
+{% endblock scripts %}

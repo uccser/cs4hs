@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block title %}Schedule - CS4HS{% endblock %}
+
+{% block content %}
+<div class="small-12 columns">
+  <h2>Conference Schedule</h2>
+
+  <p>The year's main conference is split over three days from the 2nd to 4th of December. If it's your first time attending the conference starts at 9am on the Wednesday with a special introduction session. If you are a returning attendee, the conference starts at 10:30am, however you are welcome to arrive earlier to register and there will be room available to chat and relax (see <a href="location.html">locations</a>). The conference also finishes offically with lunch on Friday, however an optional unconference event will be running for those with later flights.</p>
+
+  <div data-alert class="alert-box warning radius">
+      Schedule of events subject to change.<a href="#" class="close">&times;</a>
+  </div>
+
+  {% raw %}
+  <div id="current">
+  <script id="schedule-template" type="text/x-handlebars-template">
+    <div class="event">
+    {{#ifSameDate cells.DateTime}}
+    <h3 class="text-center">{{prettifyDate cells.DateTime "dddd Do MMMM"}}</h3>
+    {{/ifSameDate}}
+    {{#ifDifferentTimeLine cells.DateTime}}
+    <span class="small-12 columns underline"></span>
+    {{else}}
+    <span class="small-8 small-offset-2 medium-10 medium-offset-2 columns underline"></span>
+    {{/ifDifferentTimeLine}}
+    <div class="row current-event">
+        <span class="small-12 medium-3 columns">
+            {{#ifDifferentTime cells.DateTime}}
+            <h3>{{prettifyDate cells.DateTime "h:mma"}}</h3>
+            {{else}}
+            <h4 class="text-center">or</h4>
+            {{/ifDifferentTime}}
+            {{#if cells.Location}}
+            <p><b>Location</b><br>{{cells.Location}}</p>
+            {{/if}}
+            {{#if cells.Speaker}}
+            <p><b>Presenter</b><br>{{cells.Speaker}}</p>
+            {{/if}}
+        </span>
+        <span class="small-12 medium-9 columns">
+            <h4>{{cells.Title}}</h4>
+            <p class="description">{{cells.Description}}</p>
+        </span>
+    </div>
+    </div>
+  </script>
+  </div>
+  {% endraw %}
+  <div id="schedule-loading">
+      <h3 class="text-center">Loading events...</h3>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<!-- Load Moment.js -->
+<script src="./js/moment.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var source = $('#schedule-template').html();
+  var CurrentTemplate = Handlebars.compile(source);
+
+  var SameDate = "";
+  var SameDateTime = "";
+  var Time = "";
+  var TimeLine = "";
+
+  Handlebars.registerHelper("prettifyDate", function(timestamp, formatString) {
+      return moment(new Date(timestamp)).format(formatString);
+  });
+
+  Handlebars.registerHelper('ifSameDate', function(v1, options) {
+      if(v1.substring(0, 5) !== SameDate.substring(0, 5)) {
+          SameDate = v1;
+          return options.fn(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTime', function(v1, options) {
+      if(v1 !== Time) {
+          Time = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTimeLine', function(v1, options) {
+      if(v1 !== TimeLine) {
+          TimeLine = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  var now = moment().subtract(10, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+
+  // Load an entire sheet.
+  $('#current').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1BdOk8QH8H1UW0jfN7_-7-T8TOMU9u0_nhYZ99fI1flA/edit#gid=0',
+      query: 'select A,B,C,D,E',
+      rowTemplate: CurrentTemplate,
+      callback: removeLoading
+  });
+
+  function removeLoading() {
+      $("#schedule-loading").addClass('hide');
+  }
+</script>
+{% endblock scripts %}
