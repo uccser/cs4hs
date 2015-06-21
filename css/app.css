@@ -2,6 +2,8 @@
 .title {
     font-family: 'Montserrat', sans-serif;
     color: white;
+    font-size: 3.6em;
+    line-height: 100%;
 }
 .logo-number {
     color: #e88f0c;
@@ -153,7 +155,6 @@ body {
 }
 .sidebar-nav > .sidebar-brand {
     display: none;
-    height: 65px;
     font-size: 18px;
     line-height: 60px;
 }
@@ -186,6 +187,8 @@ body {
     }
     .sidebar-nav > .sidebar-brand {
         display: block;
+    }
+    .sidebar-nav > .sidebar-brand > .sidebar-brand-link {
         padding-left: 14px;
     }
     .tab-bar {
@@ -229,4 +232,10 @@ body {
 }
 .underline {
     border-bottom: 1px solid #e88f0c;
+}
+.th {
+    max-width: 130px;
+}
+.sidebar-subtitle * {
+    color: #fff;
 }
