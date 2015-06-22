@@ -1,0 +1,158 @@
+
+
+{% extends 'layout.html' %}
+
+{% block title %}Location - CS4HS{% endblock %}
+
+{% block content %}
+<div class="small-12 columns">
+  <h2>Locations</h2>
+  <p>
+    Use the map below to find locations, and <a href="location.html#address-details">full address details can be found here</a>.
+  </p>
+
+  <div id="map-canvas" class="flex-video"></div>
+
+  <h4 id="address-details">Address Details</h4>
+
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Load Google Map -->
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlzKWHXYO4RajRhUoJKGku_saOPj9Iufs">
+</script>
+<!-- Load custom marker labels -->
+<script src="js/markerwithlabel.js" type="text/javascript"></script>
+<script type="text/javascript">
+		function initialize() {
+			var mapOptions = {
+				center: { lat: -43.522700440144334, lng: 172.5818956643343},
+				zoom: 17
+			};
+		  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+			var walkingPathCoordinates = [
+				new google.maps.LatLng(-43.52062814128488, 172.5790163129568),
+				new google.maps.LatLng(-43.52066412267943, 172.57927916944027),
+				new google.maps.LatLng(-43.52064953563017, 172.57936768233776),
+				new google.maps.LatLng(-43.5208362495943, 172.57943339645863),
+				new google.maps.LatLng(-43.521064778920234, 172.57944211363792),
+
+				new google.maps.LatLng(-43.52165992357031, 172.57935360074043),
+				new google.maps.LatLng(-43.52167645528233, 172.5794642418623),
+				new google.maps.LatLng(-43.521925402868725, 172.5795353204012),
+				new google.maps.LatLng(-43.52210530575856, 172.57966574281454),
+  			new google.maps.LatLng(-43.5225356118459, 172.58065413683653),
+  			new google.maps.LatLng(-43.52249428314589, 172.5806863233447),
+				new google.maps.LatLng(-43.523011619185134, 172.58184269070625),
+				new google.maps.LatLng(-43.52310302772336, 172.5818882882595),
+				new google.maps.LatLng(-43.52321777441573, 172.58220478892326),
+				new google.maps.LatLng(-43.523293623804435, 172.58222088217735),
+				new google.maps.LatLng(-43.52324500241239, 172.58265808224678),
+				new google.maps.LatLng(-43.52366897963199, 172.58359752595425),
+				new google.maps.LatLng(-43.52382359443623, 172.58346743881702),
+				new google.maps.LatLng(-43.52402391239834, 172.58354790508747)
+			];
+
+			var walkingPath = new google.maps.Polyline({
+				path: walkingPathCoordinates,
+				geodesic: true,
+				strokeColor: '#FF786E',
+				strokeWeight: 4
+			});
+
+			walkingPath.setMap(map);
+
+			var markerErskine = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.522570, 172.581197),
+				map: map,
+				labelContent: "Erskine",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+            var markerABlock = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52410267801679, 172.5836344063282),
+				map: map,
+				labelContent: "A Block",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerCarPark = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52508286377655, 172.58607923984528),
+				map: map,
+				labelContent: "Free Parking",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerCarPark = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52040544514935, 172.57607862353325),
+				map: map,
+				labelContent: "Accommodation Parking",
+			  labelClass: "map-label map-label-minor map-label-large",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerUndercroft = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52373607667117, 172.582830414176),
+				map: map,
+				labelContent: "Undercroft",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerRR = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52034904163086, 172.57872730493546),
+				map: map,
+				labelContent: "Accommodation",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.521119236844655, 172.5793857872486),
+				map: map,
+				labelContent: "Bus Stop",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+      var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.523970429512374, 172.5842486321926),
+				map: map,
+				labelContent: "Cafe 101",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.526299, 172.579311),
+				map: map,
+				labelContent: "Tandoori Palace",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.529969, 172.575136),
+				map: map,
+				labelContent: "Bush Inn Mall",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.531656892509716, 172.5735254958272),
+				map: map,
+				labelContent: "Spagalimis",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock scripts %}

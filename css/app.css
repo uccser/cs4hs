@@ -239,3 +239,33 @@ body {
 .sidebar-subtitle * {
     color: #fff;
 }
+#map-canvas {
+    height: 100vh;
+}
+.map-label {
+    background-color: #FF786E;
+    font-family: "Lato", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    white-space: nowrap;
+}
+.map-label-major {
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    border: 2px solid #B73F37;
+    margin-left: -60px !important;
+}
+.map-label-minor {
+    font-size: 12px;
+    text-align: center ;
+    width: 100px;
+    border: 1px solid #B73F37;
+    margin-left: -50px !important;
+}
+.map-label-large {
+    font-size: 12px;
+    text-align: center ;
+    width: 140px;
+    border: 1px solid #B73F37;
+    margin-left: -70px !important;
+}
