@@ -30,6 +30,7 @@ Over the past few years the CS4HS website has been created with 'hard coded' pag
 
 ### Future plans
 
+- Minify CSS on output.
 - Use SCSS for managing CSS.
 
 ## Usage
@@ -47,4 +48,4 @@ If you notice a problem, raise an [issue here](https://github.com/uccser/cs4hs/i
 
 ## Contributing
 
-Forks and pull requests are welcome.
+Forks and pull requests are welcome. We use [Vincent Driessen's Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/) for managing development.
