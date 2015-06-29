@@ -16,29 +16,32 @@
   <div id="current">
   <script id="schedule-template" type="text/x-handlebars-template">
     <div class="event">
-    {{#ifSameDate cells.DateTime}}
-    <h3 class="text-center">{{prettifyDate cells.DateTime "dddd Do MMMM"}}</h3>
+    {{#ifSameDate cells.DateTimeStart}}
+    <h3 class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h3>
     {{/ifSameDate}}
-    {{#ifDifferentTimeLine cells.DateTime}}
+    {{#ifDifferentTimeLine cells.DateTimeStart}}
     <span class="small-12 columns underline"></span>
     {{else}}
     <span class="small-8 small-offset-2 medium-10 medium-offset-2 columns underline"></span>
     {{/ifDifferentTimeLine}}
     <div class="row current-event">
-        <span class="small-12 medium-3 columns">
-            {{#ifDifferentTime cells.DateTime}}
-            <h3>{{prettifyDate cells.DateTime "h:mma"}}</h3>
+        <span class="small-12 medium-4 columns medium-text-right">
+            {{#ifDifferentTime cells.DateTimeStart}}
+            <h3>{{prettifyDate cells.DateTimeStart "h:mma"}}</h3>
+            <h6>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</h6>
             {{else}}
             <h4 class="text-center">or</h4>
             {{/ifDifferentTime}}
+            <p>
             {{#if cells.Location}}
-            <p><b>Location</b><br>{{cells.Location}}</p>
+            <b>Location:</b> {{cells.Location}}
             {{/if}}
             {{#if cells.Speaker}}
-            <p><b>Presenter</b><br>{{cells.Speaker}}</p>
+            <br><b>Presenter:</b> {{cells.Speaker}}
             {{/if}}
+            </p>
         </span>
-        <span class="small-12 medium-9 columns">
+        <span class="small-12 medium-8 columns">
             <h4>{{cells.Title}}</h4>
             <p class="description">{{cells.Description}}</p>
         </span>
@@ -103,8 +106,8 @@
 
   // Load an entire sheet.
   $('#current').sheetrock({
-      url: 'https://docs.google.com/spreadsheets/d/1BdOk8QH8H1UW0jfN7_-7-T8TOMU9u0_nhYZ99fI1flA/edit#gid=0',
-      query: 'select A,B,C,D,E',
+      url: 'https://docs.google.com/spreadsheets/d/15y3r_9IPnL9d6fa61T7-RtTQqyJc_Y2gXIJ9oGc_Y_w/edit#gid=0',
+      query: 'select A,B,C,D,E,F',
       rowTemplate: CurrentTemplate,
       callback: removeLoading
   });

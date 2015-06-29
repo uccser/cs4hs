@@ -269,3 +269,6 @@ body {
     border: 1px solid #B73F37;
     margin-left: -70px !important;
 }
+.event-day {
+  padding-top: 20px;
+}
