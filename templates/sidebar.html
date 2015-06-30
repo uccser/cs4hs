@@ -1,60 +1,22 @@
-<li>
-    <a href="register.html" alt="Register">
-        <div class="link-icon icon-register" alt="Register"></div>
-        <div class="link-text">Register</div>
+{% set navigation_bar = [
+    ('register.html', 'icon-register', 'Register'),
+    ('schedule.html', 'icon-schedule', 'Schedule'),
+    ('location.html', 'icon-location', 'Location'),
+    ('accommodation.html', 'icon-accommodation', 'Accommodation'),
+    ('transport.html', 'icon-transport', 'Transport'),
+    ('workshop.html', 'icon-workshops', 'Workshops'),
+    ('resources.html', 'icon-resources', 'Resources'),
+    ('discussion.html', 'icon-discussions', 'Discussion'),
+    ('people.html', 'icon-people', 'People'),
+    ('about.html', 'icon-about', 'About'),
+] -%}
+{% set active_page = active_page -%}
+
+{% for href, icon, name in navigation_bar %}
+  <li>
+    <a href="{{ href }}" alt="{{ name }}">
+        <div class="link-icon {{ icon }}" alt="{{ name }}"></div>
+        <div class="link-text">{{ name }}</div>
     </a>
-</li>
-<li>
-    <a href="schedule.html" alt="Schedule">
-        <div class="link-icon icon-schedule" alt="Schedule"></div>
-        <div class="link-text">Schedule</div>
-    </a>
-</li>
-<li>
-    <a href="location.html" alt="Location">
-        <div class="link-icon icon-location" alt="Location"></div>
-        <div class="link-text">Location</div>
-    </a>
-</li>
-<li>
-    <a href="accommodation.html" alt="Accommodation">
-        <div class="link-icon icon-accommodation" alt="Accommodation"></div>
-        <div class="link-text">Accommodation</div>
-    </a>
-</li>
-<li>
-    <a href="transport.html" alt="Transport">
-        <div class="link-icon icon-transport" alt="Transport"></div>
-        <div class="link-text">Transport</div>
-    </a>
-</li>
-<li>
-    <a href="workshop.html" alt="Workshops">
-        <div class="link-icon icon-workshops" alt="Workshops"></div>
-        <div class="link-text">Workshops</div>
-    </a>
-</li>
-<li>
-    <a href="resources.html" alt="Resources">
-        <div class="link-icon icon-resources" alt="Resources"></div>
-        <div class="link-text">Resources</div>
-    </a>
-</li>
-<li>
-    <a href="discussion.html" alt="Discussion">
-        <div class="link-icon icon-discussions" alt="Discussion"></div>
-        <div class="link-text">Discussion</div>
-    </a>
-</li>
-<li>
-    <a href="people.html" alt="People">
-        <div class="link-icon icon-people" alt="People"></div>
-        <div class="link-text">People</div>
-    </a>
-</li>
-<li>
-    <a href="about.html" alt="About">
-        <div class="link-icon icon-about" alt="About"></div>
-        <div class="link-text">About</div>
-    </a>
-</li>
+  </li>
+{% endfor %}
