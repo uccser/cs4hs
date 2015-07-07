@@ -50,6 +50,7 @@ def copy_files():
         if os.path.exists(dest_folder):
             shutil.rmtree(dest_folder)
         shutil.copytree(src_folder, dest_folder)
+        print("Copied {} folder".format(folder))
 
 
 def main():
@@ -62,7 +63,7 @@ def main():
         if file.endswith('.html'):
             html = website_generator.render_html(file)
             write_html(html, file)
-            copy_files()
+    copy_files()
 
 
 if __name__ == "__main__":
