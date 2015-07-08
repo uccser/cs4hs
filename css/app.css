@@ -280,3 +280,6 @@ body {
 .event-time {
   line-height: 1.2;
 }
+.resource-link-unavailable {
+  color: #BBB;
+}
