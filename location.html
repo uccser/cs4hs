@@ -8,7 +8,7 @@
 <div class="small-12 columns">
   <h2>Locations</h2>
   <p>
-    Use the map below to find locations, and <a href="location.html#address-details">full address details can be found here</a>. Zoom the map out to see minor locations (like cafes/parking).
+    Use the map below to find locations, and <a href="location.html#address-details">full address details can be found here</a>. Locations of each event are listed on the <a href="schedule.html">schedule page</a>. Zoom the map out to see minor locations (like cafes/parking).
   </p>
 
   <div id="map-canvas" class="flex-video"></div>
@@ -38,7 +38,7 @@
       Christchurch 8041<br>
     </address>
   </p>
-  
+
 </div>
 {% endblock content %}
 
@@ -111,6 +111,14 @@
 				map: map,
 				labelContent: "Free Parking",
 			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerCarPark = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52360091009569, 172.58283644914627),
+				map: map,
+				labelContent: "Food Court (Ground Floor)",
+			  labelClass: "map-label map-label-minor map-label-large",
 				labelAnchor: new google.maps.Point(40, 40),
 			});
 

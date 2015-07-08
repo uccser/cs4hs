@@ -267,10 +267,13 @@ body {
 .map-label-large {
     font-size: 12px;
     text-align: center ;
-    width: 140px;
+    width: 150px;
     border: 1px solid #B73F37;
-    margin-left: -70px !important;
+    margin-left: -75px !important;
 }
 .event-day {
   padding-top: 20px;
+}
+.event-time {
+  line-height: 1.2;
 }
