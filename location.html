@@ -82,6 +82,25 @@
 
 			walkingPath.setMap(map);
 
+      var shortWalkingPathCoordinates = [
+				new google.maps.LatLng(-43.52064953563017, 172.57936768233776),
+				new google.maps.LatLng(-43.520594104810826, 172.57946357131004),
+				new google.maps.LatLng(-43.520403500201326, 172.5804264843464),
+				new google.maps.LatLng(-43.52049296774608, 172.5814564526081),
+				new google.maps.LatLng(-43.52047157334527, 172.58158519864082),
+				new google.maps.LatLng(-43.519781113609675, 172.58227184414864),
+				new google.maps.LatLng(-43.520122454551036, 172.5828206911683)
+			];
+
+			var shortWalkingPath = new google.maps.Polyline({
+				path: shortWalkingPathCoordinates,
+				geodesic: true,
+				strokeColor: '#FF786E',
+				strokeWeight: 4
+			});
+
+      shortWalkingPath.setMap(map);
+
 			var markerErskine = new MarkerWithLabel({
 				position: new google.maps.LatLng(-43.52264306633343, 172.5814675167203),
 				map: map,
