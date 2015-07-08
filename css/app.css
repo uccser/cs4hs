@@ -130,10 +130,6 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
-.sidebar-nav li:hover {
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.2);
-}
 .sidebar-nav li.active a .link-icon {
     color: #e88f0c;
 }
@@ -141,15 +137,11 @@ body {
 .sidebar-nav li a:focus {
     text-decoration: none;
 }
-.sidebar-nav li a:hover span {
-    text-decoration: none;
-    color: #e88f0c;
-}
-#sidebar-wrapper.toggled .sidebar-nav li a:hover span {
+/*#sidebar-wrapper.toggled .sidebar-nav li a:hover span {
     text-decoration: none;
     color: #fff;
     background: transparent;
-}
+}*/
 .sidebar-nav li a:active span,
 .sidebar-nav li a:focus span {
     text-decoration: none;
@@ -194,6 +186,14 @@ body {
     }
     .tab-bar {
         visibility: hidden;
+    }
+    .sidebar-nav li:hover {
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .sidebar-nav li a:hover div.link-icon {
+        text-decoration: none;
+        color: #e88f0c;
     }
     #sidebar-wrapper {
         width: 250px;
