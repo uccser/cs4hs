@@ -235,8 +235,11 @@ body {
 .underline {
     border-bottom: 1px solid #e88f0c;
 }
-.th {
+.th-people {
     max-width: 130px;
+}
+.image-subtitle {
+    color: #999;
 }
 .sidebar-subtitle * {
     color: #fff;
