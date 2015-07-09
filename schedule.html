@@ -17,7 +17,7 @@
   <script id="schedule-template" type="text/x-handlebars-template">
     <div class="event">
     {{#ifSameDate cells.DateTimeStart}}
-    <h3 class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h3>
+    <h2 class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h3>
     {{/ifSameDate}}
     {{#ifDifferentTimeLine cells.DateTimeStart}}
     <span class="small-12 columns underline"></span>
