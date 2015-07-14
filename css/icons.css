@@ -59,9 +59,6 @@
 .icon-people:before {
   content: "g";
 }
-.icon-about:before {
-  content: "h";
-}
 .icon-menu:before {
   content: "i";
 }
@@ -70,4 +67,7 @@
 }
 .icon-workshops:before {
   content: "k";
+}
+.icon-about:before {
+  content: "l";
 }

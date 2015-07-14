@@ -2,6 +2,8 @@
 
 This project generates the website for the CS4HS Conference held at the University of Canterbury, New Zealand located at [cosc.canterbury.ac.nz/cs4hs](http://www.cosc.canterbury.ac.nz/cs4hs/index.html).
 
+**Current Version:** 2015.1 (CS4HS 2015 pre-conference)
+
 ## Overview
 
 Running `generate.py` will produce all the necessary files for the website, that can be copied and placed on the appropriate web server. The script will generate HTML pages using Jinja2, and copy all images, files, css, and js into the output folder as well.
