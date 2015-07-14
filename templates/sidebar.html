@@ -1,0 +1,22 @@
+{% set navigation_bar = [
+    ('register.html', 'icon-register', 'Register'),
+    ('schedule.html', 'icon-schedule', 'Schedule'),
+    ('workshops.html', 'icon-workshops', 'Workshops'),
+    ('location.html', 'icon-location', 'Location'),
+    ('accommodation.html', 'icon-accommodation', 'Accommodation'),
+    ('transport.html', 'icon-transport', 'Transport'),
+    ('resources.html', 'icon-resources', 'Resources'),
+    ('discussion.html', 'icon-discussions', 'Discussion'),
+    ('people.html', 'icon-people', 'People'),
+    ('about.html', 'icon-about', 'About'),
+] -%}
+{% set active_page = active_page -%}
+
+{% for href, icon, name in navigation_bar %}
+  <li>
+    <a href="{{ href }}" alt="{{ name }}">
+        <div class="link-icon {{ icon }}" alt="{{ name }}"></div>
+        <div class="link-text">{{ name }}</div>
+    </a>
+  </li>
+{% endfor %}
