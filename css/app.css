@@ -283,3 +283,6 @@ body {
 .resource-link-unavailable {
   color: #BBB;
 }
+div.alert > a {
+  color: #600000;
+}
