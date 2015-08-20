@@ -12,6 +12,10 @@
       Schedule of events subject to change.<a href="#" class="close">&times;</a>
   </div>
 
+  <div data-alert class="alert-box alert radius">
+      We have been having difficulties in displaying the schedule correctly due to changing web libraries. If you notice an error, please email <a href="mailto:jack.morgan@canterbury.ac.nz">Jack Morgan</a>, and if the schedule fails to load, a backup is <a href="https://docs.google.com/spreadsheets/d/15y3r_9IPnL9d6fa61T7-RtTQqyJc_Y2gXIJ9oGc_Y_w/edit#gid=0">available for viewing here</a>. <a href="#" class="close">&times;</a>
+  </div>
+
   {% raw %}
   <div id="current">
   <script id="schedule-template" type="text/x-handlebars-template">
@@ -19,11 +23,13 @@
     {{#ifSameDate cells.DateTimeStart}}
     <h2 class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h3>
     {{/ifSameDate}}
+
     {{#ifDifferentTimeLine cells.DateTimeStart}}
     <span class="small-12 columns underline"></span>
     {{else}}
     <span class="small-8 small-offset-2 medium-10 medium-offset-2 columns underline"></span>
     {{/ifDifferentTimeLine}}
+
     <div class="row current-event">
         <span class="small-12 medium-4 columns medium-text-right">
             {{#ifDifferentTime cells.DateTimeStart}}
@@ -32,15 +38,18 @@
             {{else}}
             <h4 class="text-center">or</h4>
             {{/ifDifferentTime}}
+
             <p>
             {{#if cells.Location}}
             <b>Location:</b> {{cells.Location}}
             {{/if}}
+
             {{#if cells.Speaker}}
             <br><b>Presenter:</b> {{cells.Speaker}}
             {{/if}}
             </p>
         </span>
+
         <span class="small-12 medium-8 columns">
             <h4>{{cells.Title}}</h4>
             <p class="description">{{cells.Description}}</p>
@@ -69,23 +78,34 @@
   var source = $('#schedule-template').html();
   var CurrentTemplate = Handlebars.compile(source);
 
-  var SameDate = "";
-  var SameDateTime = "";
-  var Time = "";
-  var TimeLine = "";
+  var defaultDate = new Date(500);
+  var SameDate = defaultDate;
+  var SameDateTime = defaultDate;
+  var Time = defaultDate;
+  var TimeLine = defaultDate;
+
+  function parseDate(date_string) {
+      date = date_string.slice(5,-1);
+      date = date.split(',');
+      date = new Date(date[0], date[1], date[2], date[3], date[4], date[5]);
+      return date;
+  }
 
   Handlebars.registerHelper("prettifyDate", function(timestamp, formatString) {
-      return moment(new Date(timestamp)).format(formatString);
+      timestamp = parseDate(timestamp);
+      return moment(timestamp).format(formatString);
   });
 
   Handlebars.registerHelper('ifSameDate', function(v1, options) {
-      if(v1.substring(0, 5) !== SameDate.substring(0, 5)) {
+      v1 = parseDate(v1);
+      if(v1.getDate() !== SameDate.getDate()) {
           SameDate = v1;
           return options.fn(this);
       }
   });
 
   Handlebars.registerHelper('ifDifferentTime', function(v1, options) {
+      v1 = parseDate(v1);
       if(v1 !== Time) {
           Time = v1;
           return options.fn(this);
@@ -95,6 +115,7 @@
   });
 
   Handlebars.registerHelper('ifDifferentTimeLine', function(v1, options) {
+      v1 = parseDate(v1);
       if(v1 !== TimeLine) {
           TimeLine = v1;
           return options.fn(this);
