@@ -23,8 +23,9 @@
 
   <p>
     <address>
-    <strong>NZi3 Building</strong><br>
-      69 Creyke Road, Ilam<br>
+    <strong>C Lecture Theatre Block</strong><br>
+      University of Canterbury<br>
+      Ilam Campus<br>
       Christchurch 8041<br>
     </address>
   </p>
@@ -65,10 +66,13 @@
 				new google.maps.LatLng(-43.52167645528233, 172.5794642418623),
 				new google.maps.LatLng(-43.521925402868725, 172.5795353204012),
 				new google.maps.LatLng(-43.52210530575856, 172.57966574281454),
-  			new google.maps.LatLng(-43.52256381258966, 172.58071515709162),
-  			new google.maps.LatLng(-43.520122454551036, 172.5828206911683),
-				new google.maps.LatLng(-43.520351959055525, 172.58321933448315),
-				new google.maps.LatLng(-43.52047157334527, 172.583102658391)
+  			new google.maps.LatLng(-43.52305635104029, 172.58184000849724),
+  			new google.maps.LatLng(-43.52310108286228, 172.58188292384148),
+				new google.maps.LatLng(-43.5232216641303, 172.5822101533413),
+				new google.maps.LatLng(-43.523293623804435, 172.58222356438637),
+				new google.maps.LatLng(-43.523248892125196, 172.58265540003777),
+				new google.maps.LatLng(-43.52335391427614, 172.58292898535728),
+				new google.maps.LatLng(-43.52313609035202, 172.58311942219734)
 			];
 
 			var walkingPath = new google.maps.Polyline({
@@ -80,25 +84,6 @@
 
 			walkingPath.setMap(map);
 
-      var shortWalkingPathCoordinates = [
-				new google.maps.LatLng(-43.52064953563017, 172.57936768233776),
-				new google.maps.LatLng(-43.520594104810826, 172.57946357131004),
-				new google.maps.LatLng(-43.520403500201326, 172.5804264843464),
-				new google.maps.LatLng(-43.52049296774608, 172.5814564526081),
-				new google.maps.LatLng(-43.52047157334527, 172.58158519864082),
-				new google.maps.LatLng(-43.519781113609675, 172.58227184414864),
-				new google.maps.LatLng(-43.520122454551036, 172.5828206911683)
-			];
-
-			var shortWalkingPath = new google.maps.Polyline({
-				path: shortWalkingPathCoordinates,
-				geodesic: true,
-				strokeColor: '#FF786E',
-				strokeWeight: 4
-			});
-
-      shortWalkingPath.setMap(map);
-
 			var markerErskine = new MarkerWithLabel({
 				position: new google.maps.LatLng(-43.52264306633343, 172.5814675167203),
 				map: map,
@@ -108,20 +93,12 @@
 			});
 
 			var markerErskine = new MarkerWithLabel({
-				position: new google.maps.LatLng(-43.520494912691234, 172.58302219212055),
+				position: new google.maps.LatLng(-43.523130255, 172.583657205),
 				map: map,
-				labelContent: "NZi3",
+				labelContent: "C Block",
 			  labelClass: "map-label map-label-major",
 				labelAnchor: new google.maps.Point(40, 40),
 			});
-
-      // var markerABlock = new MarkerWithLabel({
-			// 	position: new google.maps.LatLng(-43.52410267801679, 172.5836344063282),
-			// 	map: map,
-			// 	labelContent: "A Block",
-			//   labelClass: "map-label map-label-major",
-			// 	labelAnchor: new google.maps.Point(40, 40),
-			// });
 
 			var markerCarPark = new MarkerWithLabel({
 				position: new google.maps.LatLng(-43.52508286377655, 172.58607923984528),
@@ -147,14 +124,6 @@
 				labelAnchor: new google.maps.Point(40, 40),
 			});
 
-			// var markerUndercroft = new MarkerWithLabel({
-			// 	position: new google.maps.LatLng(-43.52373607667117, 172.582830414176),
-			// 	map: map,
-			// 	labelContent: "Undercroft",
-			//   labelClass: "map-label map-label-major",
-			// 	labelAnchor: new google.maps.Point(40, 40),
-			// });
-
 			var markerRR = new MarkerWithLabel({
 				position: new google.maps.LatLng(-43.52034904163086, 172.57872730493546),
 				map: map,
@@ -171,13 +140,13 @@
 				labelAnchor: new google.maps.Point(40, 40),
 			});
 
-      // var markerBus = new MarkerWithLabel({
-			// 	position: new google.maps.LatLng(-43.523970429512374, 172.5842486321926),
-			// 	map: map,
-			// 	labelContent: "Cafe 101",
-			//   labelClass: "map-label map-label-minor",
-			// 	labelAnchor: new google.maps.Point(40, 40),
-			// });
+      var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.523970429512374, 172.5842486321926),
+				map: map,
+				labelContent: "Cafe 101",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
 
       var markerBus = new MarkerWithLabel({
 				position: new google.maps.LatLng(-43.522446633550736, 172.5809297338128),
