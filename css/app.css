@@ -245,7 +245,7 @@ body {
     color: #fff;
 }
 #map-canvas {
-    height: 100vh;
+    height: 80vh;
 }
 .map-label {
     background-color: #FF786E;
