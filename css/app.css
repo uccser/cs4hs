@@ -226,6 +226,11 @@ body {
     max-height: 70px;
     margin: 10px 10px;
 }
+.logo-small {
+    max-height: 60px;
+    max-width: 230px;
+    margin: 10px 10px;
+}
 #footer {
     padding-top: 10px;
     border-top: 1px solid grey;
