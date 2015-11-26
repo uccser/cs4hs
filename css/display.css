@@ -66,3 +66,9 @@
   display: table-cell;
   vertical-align: middle;
 }
+.no-padding {
+  padding: 0 !important;
+}
+#display-three-body {
+  overflow: hidden;
+}
