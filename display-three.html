@@ -160,12 +160,12 @@
       }
   });
 
-  var now = moment().subtract(10, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+  var now = moment().format('YYYY-MM-DD HH:mm:ss');
 
   // Load an entire sheet.
   $('#current').sheetrock({
       url: 'https://docs.google.com/spreadsheets/d/15y3r_9IPnL9d6fa61T7-RtTQqyJc_Y2gXIJ9oGc_Y_w/edit#gid=0',
-      query: 'select A,B,C,D,E,F where A >= datetime "' + now + '"',
+      query: 'select A,B,C,D,E,F where B >= datetime "' + now + '"',
       rowTemplate: CurrentTemplate,
       callback: removeLoading
   });
