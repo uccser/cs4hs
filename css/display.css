@@ -49,3 +49,26 @@
   width: auto;
   border: 0;
 }
+.display-three-background {
+  background-color: #0a83bb;
+  height: 100vh;
+  display: table;
+  width: 100%;
+}
+.display-three-large-text {
+  font-size: 20rem;
+  padding-bottom: 5rem;
+}
+.display-three-small-text {
+  font-size: 7rem;
+}
+.display-three-align {
+  display: table-cell;
+  vertical-align: middle;
+}
+.no-padding {
+  padding: 0 !important;
+}
+#display-three-body {
+  overflow: hidden;
+}

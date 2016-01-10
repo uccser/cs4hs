@@ -291,3 +291,6 @@ body {
 div.alert > a {
   color: #600000;
 }
+#homepage-well {
+  margin-bottom: 1rem !important;
+}

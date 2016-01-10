@@ -7,16 +7,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}CS4HS{% endblock %}</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/foundation.min.css">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="shortcut icon" href="img/favicon.png">
   <link href="css/fixed-top-bar.css" rel="stylesheet">
   <link href="css/icons.css" rel="stylesheet">
   <script src="js/modernizr.js"></script>
   {% endblock head %}
 </head>
+{% block body_start %}
 <body>
+{% endblock body_start %}
   {% block body %}
   <nav class="tab-bar">
       <section class="left-small" id="menu-toggle">
