@@ -6,7 +6,7 @@ This project generates the website for the CS4HS Conference held at the Universi
 
 ## Overview
 
-Running `generate.py` will produce all the necessary files for the website, that can be copied and placed on the appropriate web server. The script will generate HTML pages using Jinja2, and copy all images, files, css, and js into the output folder as well.
+Running `generate.py` will produce all the necessary files for the website, that can be copied and placed on the appropriate web server. The script will generate HTML pages using Jinja2, and copy all images, files, css, and js into the output folder as well. This program is not as efficient in generation as the [CSFG](https://github.com/uccser/cs-field-guide) project, however it does get the job done.
 
     cs4hs/
     ├── css/
@@ -28,7 +28,7 @@ Running `generate.py` will produce all the necessary files for the website, that
 
 ### Why use a template engine?
 
-Over the past few years the CS4HS website has been created with 'hard coded' pages (created in the amazing [Brackets](http://brackets.io/)). We now want to use a template engine to manage repetitive code, and this small Python script using Jinja2 achieves this. This project also prepares us for the website creation aspect of the [CSFG](https://github.com/uccser/cs-field-guide) project.
+Over the past few years the CS4HS website has been created with 'hard coded' pages (created in the amazing [Brackets](http://brackets.io/)). We now want to use a template engine to manage repetitive code, and this small Python script using Jinja2 achieves this. This project prepared us for the website creation aspect of the [CSFG](https://github.com/uccser/cs-field-guide) project.
 
 ### Future plans
 
