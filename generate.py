@@ -80,6 +80,7 @@ def main():
         files = ['pre-index.html']
     else:
         files = os.listdir(TEXT_FOLDER)
+        files.remove('pre-index.html')
 
     # Render all HTML files in top directory
     for file in files:
