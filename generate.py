@@ -6,12 +6,13 @@ REQUIRES: Python >= 3.4.1
 
 CURRENT_DIRECTORY = '.'
 OUTPUT_DIRECTORY = './output/'
+TEXT_FOLDER = './text/'
 FOLDERS_TO_COPY = ['css', 'files', 'img', 'js']
 
 """Check and install dependencies"""
 import pip
 # Update pip if needed and install dependencies
-pip.main(['install', '--upgrade', 'pip>=7.0.3'])
+pip.main(['install', 'pip>=7.0.3'])
 pip.main(['install', 'jinja2>=2.7.3'])
 
 import os
@@ -57,11 +58,12 @@ def main():
     """Create template engine and process all HTML files
     in the top directory"""
     website_generator = WebsiteGenerator()
-    files = os.listdir(CURRENT_DIRECTORY)
+    files = os.listdir(TEXT_FOLDER)
     # Render all HTML files in top directory
     for file in files:
         if file.endswith('.html'):
-            html = website_generator.render_html(file)
+            file_path = os.path.join(TEXT_FOLDER, file)
+            html = website_generator.render_html(file_path)
             write_html(html, file)
     copy_files()
 

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}Discussion - CS4HS Christchurch 2015{% endblock %}
+
+{% block content %}
+<div class="small-12 columns">
+  <h2>Discussion</h2>
+  <p>Join in the discussion on Twitter below.</p>
+  <div class="row" data-equalizer>
+    <span class="small-12 medium-6 columns">
+      <p data-equalizer-watch>These tweets are from organisers: ^JM (Jack Morgan). If you have any questions, you can tweet us at @UCCSEd.</p>
+      <a class="twitter-timeline"
+         href="https://twitter.com/UCCSEd"
+         data-widget-id="525448302553083904"
+         height="600">
+      </a>
+    </span>
+    <span class="small-12 medium-6 columns">
+      <p data-equalizer-watch>These tweets are from anyone using the #CS4HSchch tag. If you have any cool comments, questions, or photos, please post using this hashtag.</p>
+      <a class="twitter-timeline"
+         data-dnt="true"
+         href="https://twitter.com/hashtag/CS4HSchch"
+         data-widget-id="522159625521487872"
+         height="600">
+      </a>
+    </span>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endblock scripts %}
