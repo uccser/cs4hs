@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+
+{% block title %}CS4HS Christchurch 2016{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<span class="columns small-12 medium-8 medium-offset-2 large-6 large-offset-3 end">
+    <div class="text-center">
+        <h1 class="title logo-colour">CS<span class="logo-number">4</span>HS</h1>
+        <h3>28 Nov - 2 Dec 2016</h3>
+        <h3>University of Canterbury</h3>
+        <h3>Christchurch, New Zealand</h3>
+        <h4>Funding to be confirmed</h4>
+    </div>
+
+    <h2>Welcome!</h2>
+
+    <p>Welcome to the website for the Christchurch Computer Science for High Schools conference, at the University of Canterbury in December 2016. Our conference is focused on preparing for the computer science and programming achievement standards for NCEA. Full details regarding the conference's timetable, location, etc will be announced mid year. We have begun organising funding for the event, and planning to run it over five days in late November 2016. The first two days will be optional programming workshop, with the main conference running over last three days (as 2015 was scheduled). We expect to confirm the conference by the end of May 2016.</p>
+
+    <div class="text-center">
+      <img src="img/panorama-2015.jpg" class="th">
+      <p class="image-subtitle">Conference in 2015</p>
+    </div>
+
+    <p>The conference aims to cover:</p>
+    <ul>
+        <li>Computer Science NCEA Standards (both introductions and analysis)</li>
+        <li>Programming NCEA Standards (both introductions and analysis)</li>
+        <li>Student stories and industry visit</li>
+        <li>Networking opportunities with other NZ educators</li>
+    </ul>
+
+    <p>What teachers said about our 2015 conference:</p>
+    <div class="quotes"><em>
+      <p>“I have been to a few conferences and this was by far the best. The teaching and learning was refreshing and empowering. The opening presentation on Wednesday encouraged an agentic frame of reference which made for a very positive conference. The focus was Computer Science and all the workshops and presentations served as pieces that fit together to see and understand Computer Science. Awesome! Thanks to the sponsorship my school is more likely to let me attend next year. Tim and his team of volunteers worked tirelessly to make the conference the success it was.”</p>
+
+      <p>“Thanks so much for a brilliant conference. Everyone was friendly, helpful and above all passionate. You guys are awesome.”</p>
+
+      <p>"This was one of the best workshops that I have attended. The presenters were wonderful and nothing was a problem, they were very supportive, friendly, knowledgeable, and diverse. The accommodation was lovely, the food was a great selection. It was no stress to attend. The ability to network and 'talk the talk' with other DT teachers was invaluable. Thank you."</p>
+
+      <p>"Please keep on having these workshops - they are fantastic."</p>
+    </em>
+    </div>
+
+    <div class="text-center">
+      <img src="img/collage-2015.jpg" class="th">
+      <p class="image-subtitle">Various photos from the conference in 2015</p>
+    </div>
+
+    <p>If you are looking for information about the Wellington or Auckland CS4HS conferences, looking to contact us, or wanting to read the FAQ, you can find all this information at the bottom of this page.</p>
+
+    <h2>Expression of Interest</h2>
+    <p>You are now able to express interest in attending our conference. Be aware this does not register you for the conference, but by filling out this form you will be notified about registrations one week earlier in mid 2016.</p>
+
+    <a href="https://docs.google.com/forms/d/16Qw__ufZJ5IuqBqMTVGVlFh9p5S6wPJnZwgbybpayKI/viewform" class="button expand radius">Click here to express interest in attending</a>
+
+    <h2>Frequently Asked Questions</h2>
+    {% raw %}
+    <div id="faq">
+    <script id="faq-template" type="text/x-handlebars-template">
+        <h4>{{cells.Question}}</h4>
+        <p>{{cells.Answer}}</p>
+    </script>
+    </div>
+    {% endraw %}
+
+    <div id="faq-progress" style="display: none;">
+        <h4 class="text-center">Loading FAQ...</h4>
+    </div>
+
+    <h2>Useful Links</h2>
+    <h4>Previous Conference Websites</h4>
+    <p><a href="http://www.cosc.canterbury.ac.nz/cs4hs/2015/index.html">2015 conference website</a></p>
+    <p><a href="http://www.cosc.canterbury.ac.nz/cs4hs/2014/index.html">2014 conference website</a></p>
+    <p><a href="http://www.cosc.canterbury.ac.nz/cs4hs/2013/index.html">2013 conference website</a></p>
+
+    <h4>Other New Zealand CS4HS Conferences</h4>
+    <p><strong>Wellington</strong> - TBA</a></p>
+    <p><strong>Auckland</strong> - TBA</a></p>
+
+    <h4>Contacts</h4>
+    <div class="row">
+    <span class="columns small-12 medium-6">
+        <address>
+            <strong>Jack Morgan</strong><br>
+            For general and website enquiries<br>
+            email: <a href="mailto:jack.morgan@canterbury.ac.nz">jack.morgan@canterbury.ac.nz</a>
+        </address>
+    </span>
+    <span class="columns small-12 medium-6">
+        <address>
+            <strong>Tim Bell</strong><br>
+            For press enquiries<br>
+            email: <a href="mailto:tim.bell@canterbury.ac.nz">tim.bell@canterbury.ac.nz</a>
+        </address>
+    </span>
+    </div>
+</span>
+</div>
+</div>
+<footer id="footer" class="text-center">
+  <div class="row">
+    <div class="small-12 columns">
+      <p>
+          <a href="http://www.cs4hs.com/"><img src="./img/google-logo-colour.png" class="logo"></img></a>
+          <a href="http://www.canterbury.ac.nz/"><img src="./img/canterbury-logo.png" class="logo"></img></a>
+      </p>
+      <p>
+        <a href="https://github.com/uccser/cs4hs">This website is open source and available on GitHub</a>
+      </p>
+      <p>
+          2016 - <a href="https://twitter.com/jackmorgannz">Jack Morgan</a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock body %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var faqTemplate = Handlebars.compile($('#faq-template').html());
+  // Load an entire sheet.
+  $('#faq').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1IVSUMAVlk2jbmRhBUf550zL2IKt9-HI-T3lN3XTqxE8/edit#gid=0',
+      query: 'select A,B',
+      rowTemplate: faqTemplate,
+      callback: removeLoading
+  });
+  function removeLoading() {
+      $("#faq-loading").addClass('hide');
+  }
+</script>
+{% endblock scripts %}

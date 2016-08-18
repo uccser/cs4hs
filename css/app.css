@@ -6,8 +6,17 @@
     line-height: 100%;
     margin-top: 0px;
 }
+.logo-colour {
+    color: #0a83bb !important;
+}
+.container {
+  margin: 1rem 0rem;
+}
 .logo-number {
     color: #e88f0c;
+}
+.quotes {
+  padding: 0 1rem;
 }
 h1,
 h2,
