@@ -40,6 +40,7 @@ def write_html(html, file):
         with open(file_name, 'w', encoding='utf8') as output_file:
             output_file.write(html)
             print('Created {}'.format(file))
+            os.chmod(file_name, 0o644)
     except:
         print("Cannot write {0}".format(file))
 
@@ -52,7 +53,19 @@ def copy_files():
         if os.path.exists(dest_folder):
             shutil.rmtree(dest_folder)
         shutil.copytree(src_folder, dest_folder)
+        os.chmod(dest_folder, 0o2775)
+        apply_file_permissions_to_folder(dest_folder)
         print("Copied {} folder".format(folder))
+
+
+def apply_file_permissions_to_folder(folder_name):
+    for root, folders, files in os.walk(folder_name):
+        for folder in folders:
+            folder_path = os.path.join(root, folder)
+            os.chmod(folder_path, 0o2775)
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            os.chmod(file_path, 0o644)
 
 
 def command_line_args():

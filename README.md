@@ -1,6 +1,6 @@
 # CS4HS Website Generator
 
-This project generates the website for the CS4HS Conference held at the University of Canterbury, New Zealand located at [cosc.canterbury.ac.nz/cs4hs](http://www.cosc.canterbury.ac.nz/cs4hs/index.html).
+This project generates the website for the CS4HS workshops held at the University of Canterbury, New Zealand located at [cosc.canterbury.ac.nz/cs4hs](http://www.cosc.canterbury.ac.nz/cs4hs/index.html).
 
 ## Overview
 

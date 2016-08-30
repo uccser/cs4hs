@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Location - CS4HS{% endblock %}
+{% block title %}Location{% endblock %}
 
 {% block content %}
 <div class="small-12 columns">
@@ -9,7 +9,10 @@
     Use the map below to find locations, and <a href="location.html#address-details">full address details can be found here</a>. Locations of each event are listed on the <a href="schedule.html">schedule page</a>. Zoom the map out to see minor locations (like caf&eacute;s/parking).
   </p>
 
-  <div id="map-canvas" class="flex-video"></div>
+  <div id="map-canvas" class="flex-video">
+    <img src="img/map-backup.png">
+  </div>
+  <p class="text-center"><small>Map not loading? <a href="img/map-backup.png">View an image version here.</a></small></p>
 
   <h4 id="address-details">Address Details</h4>
 
@@ -23,7 +26,7 @@
 
   <p>
     <address>
-    <strong>C Lecture Theatre Block</strong><br>
+    <strong>A Lecture Theatre Block</strong><br>
       University of Canterbury<br>
       Ilam Campus<br>
       Christchurch 8041<br>
@@ -32,8 +35,8 @@
 
   <p>
   <address>
-    <strong>University Hall</strong><br>
-      9 Maidstone Road, Ilam<br>
+    <strong>Bishop Julius Hall</strong><br>
+      90 Waimairi Road, Upper Riccarton<br>
       Christchurch 8041<br>
     </address>
   </p>
@@ -51,28 +54,25 @@
 <script type="text/javascript">
 		function initialize() {
 			var mapOptions = {
-				center: { lat: -43.521531073306576, lng: 172.58072521537542},
+				center: { lat: -43.523344190010576, lng: 172.5791698694229},
 				zoom: 16
 			};
 		  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-			var walkingPathCoordinates = [
-				new google.maps.LatLng(-43.52062814128488, 172.5790163129568),
-				new google.maps.LatLng(-43.52066412267943, 172.57927916944027),
-				new google.maps.LatLng(-43.52064953563017, 172.57936768233776),
-				new google.maps.LatLng(-43.5208362495943, 172.57943339645863),
-				new google.maps.LatLng(-43.521064778920234, 172.57944211363792),
-				new google.maps.LatLng(-43.52165992357031, 172.57935360074043),
-				new google.maps.LatLng(-43.52167645528233, 172.5794642418623),
-				new google.maps.LatLng(-43.521925402868725, 172.5795353204012),
-				new google.maps.LatLng(-43.52210530575856, 172.57966574281454),
-  			new google.maps.LatLng(-43.52305635104029, 172.58184000849724),
-  			new google.maps.LatLng(-43.52310108286228, 172.58188292384148),
-				new google.maps.LatLng(-43.5232216641303, 172.5822101533413),
-				new google.maps.LatLng(-43.523293623804435, 172.58222356438637),
-				new google.maps.LatLng(-43.523248892125196, 172.58265540003777),
-				new google.maps.LatLng(-43.52335391427614, 172.58292898535728),
-				new google.maps.LatLng(-43.52313609035202, 172.58311942219734)
+      var walkingPathCoordinates = [
+				new google.maps.LatLng(-43.52251567682943, 172.58058473467827),
+				new google.maps.LatLng(-43.52269071577345, 172.58016765117645),
+				new google.maps.LatLng(-43.52306607535225, 172.57969558238983),
+				new google.maps.LatLng(-43.52332279662084, 172.5791698694229),
+				new google.maps.LatLng(-43.52354256471774, 172.57914572954178),
+				new google.maps.LatLng(-43.52362424823107, 172.57884800434113),
+				new google.maps.LatLng(-43.52486504609518, 172.5776731967926),
+				new google.maps.LatLng(-43.52497395503417, 172.57769465446472),
+				new google.maps.LatLng(-43.52498951343797, 172.57665395736694),
+				new google.maps.LatLng(-43.525133428482945, 172.5748246908188),
+				new google.maps.LatLng(-43.52508675337085, 172.5739449262619),
+				new google.maps.LatLng(-43.52511009093141, 172.57339775562286),
+				new google.maps.LatLng(-43.52462000026354, 172.57330119609833)
 			];
 
 			var walkingPath = new google.maps.Polyline({
@@ -93,9 +93,9 @@
 			});
 
 			var markerErskine = new MarkerWithLabel({
-				position: new google.maps.LatLng(-43.523130255, 172.583657205),
+				position: new google.maps.LatLng(-43.52408322972549, 172.5836169719696),
 				map: map,
-				labelContent: "C Block",
+				labelContent: "A Block",
 			  labelClass: "map-label map-label-major",
 				labelAnchor: new google.maps.Point(40, 40),
 			});
@@ -116,16 +116,8 @@
 				labelAnchor: new google.maps.Point(40, 40),
 			});
 
-			var markerCarPark = new MarkerWithLabel({
-				position: new google.maps.LatLng(-43.52040544514935, 172.57607862353325),
-				map: map,
-				labelContent: "Accommodation Parking",
-			  labelClass: "map-label map-label-minor map-label-large",
-				labelAnchor: new google.maps.Point(40, 40),
-			});
-
 			var markerRR = new MarkerWithLabel({
-				position: new google.maps.LatLng(-43.52034904163086, 172.57872730493546),
+				position: new google.maps.LatLng(-43.524569435126764, 172.57360696792603),
 				map: map,
 				labelContent: "Accommodation",
 			  labelClass: "map-label map-label-major",
