@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+
+{% block title %}Location{% endblock %}
+
+{% block content %}
+<div class="small-12 columns">
+  <h2>Locations</h2>
+  <p>
+    Use the map below to find locations, and <a href="location.html#address-details">full address details can be found here</a>. Locations of each event are listed on the <a href="schedule.html">schedule page</a>. Zoom the map out to see minor locations (like caf&eacute;s/parking).
+  </p>
+
+  <div id="map-canvas" class="flex-video">
+    <img src="img/map-backup.png">
+  </div>
+  <p class="text-center"><small>Map not loading? <a href="img/map-backup.png">View an image version here.</a></small></p>
+
+  <h4 id="address-details">Address Details</h4>
+
+  <p>
+    <address>
+    <strong>Erskine Building</strong><br>
+      Engineering Road, Ilam<br>
+      Christchurch 8041<br>
+    </address>
+  </p>
+
+  <p>
+    <address>
+    <strong>A Lecture Theatre Block</strong><br>
+      University of Canterbury<br>
+      Ilam Campus<br>
+      Christchurch 8041<br>
+    </address>
+  </p>
+
+  <p>
+  <address>
+    <strong>Bishop Julius Hall</strong><br>
+      90 Waimairi Road, Upper Riccarton<br>
+      Christchurch 8041<br>
+    </address>
+  </p>
+
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Load Google Map -->
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlzKWHXYO4RajRhUoJKGku_saOPj9Iufs">
+</script>
+<!-- Load custom marker labels -->
+<script src="js/markerwithlabel.js" type="text/javascript"></script>
+<script type="text/javascript">
+		function initialize() {
+			var mapOptions = {
+				center: { lat: -43.523344190010576, lng: 172.5791698694229},
+				zoom: 16
+			};
+		  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      var walkingPathCoordinates = [
+				new google.maps.LatLng(-43.52251567682943, 172.58058473467827),
+				new google.maps.LatLng(-43.52269071577345, 172.58016765117645),
+				new google.maps.LatLng(-43.52306607535225, 172.57969558238983),
+				new google.maps.LatLng(-43.52332279662084, 172.5791698694229),
+				new google.maps.LatLng(-43.52354256471774, 172.57914572954178),
+				new google.maps.LatLng(-43.52362424823107, 172.57884800434113),
+				new google.maps.LatLng(-43.52486504609518, 172.5776731967926),
+				new google.maps.LatLng(-43.52497395503417, 172.57769465446472),
+				new google.maps.LatLng(-43.52498951343797, 172.57665395736694),
+				new google.maps.LatLng(-43.525133428482945, 172.5748246908188),
+				new google.maps.LatLng(-43.52508675337085, 172.5739449262619),
+				new google.maps.LatLng(-43.52511009093141, 172.57339775562286),
+				new google.maps.LatLng(-43.52462000026354, 172.57330119609833)
+			];
+
+			var walkingPath = new google.maps.Polyline({
+				path: walkingPathCoordinates,
+				geodesic: true,
+				strokeColor: '#FF786E',
+				strokeWeight: 4
+			});
+
+			walkingPath.setMap(map);
+
+			var markerErskine = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52264306633343, 172.5814675167203),
+				map: map,
+				labelContent: "Erskine",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerErskine = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52408322972549, 172.5836169719696),
+				map: map,
+				labelContent: "A Block",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerCarPark = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52508286377655, 172.58607923984528),
+				map: map,
+				labelContent: "Fine Arts Parking",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerCarPark = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.52360091009569, 172.58283644914627),
+				map: map,
+				labelContent: "Food Court (Ground Floor)",
+			  labelClass: "map-label map-label-minor map-label-large",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerRR = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.524569435126764, 172.57360696792603),
+				map: map,
+				labelContent: "Accommodation",
+			  labelClass: "map-label map-label-major",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.521119236844655, 172.5793857872486),
+				map: map,
+				labelContent: "Bus Stop",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+      var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.523970429512374, 172.5842486321926),
+				map: map,
+				labelContent: "Cafe 101",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+      var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.522446633550736, 172.5809297338128),
+				map: map,
+				labelContent: "Reboot Cafe",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+      var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.51953604712754, 172.57914036512375),
+				map: map,
+				labelContent: "LB&Co Cafe",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.526299, 172.579311),
+				map: map,
+				labelContent: "Tandoori Palace",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.529969, 172.575136),
+				map: map,
+				labelContent: "Bush Inn Mall",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+
+			var markerBus = new MarkerWithLabel({
+				position: new google.maps.LatLng(-43.531656892509716, 172.5735254958272),
+				map: map,
+				labelContent: "Spagalimis",
+			  labelClass: "map-label map-label-minor",
+				labelAnchor: new google.maps.Point(40, 40),
+			});
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock scripts %}

@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="css/display.css">
+  <!-- Reload page every 5 minutes to refresh timetable -->
+  <meta http-equiv="refresh" content="300">
+{% endblock head %}
+
+{% block body %}
+<nav class="tab-bar">
+    <section class="middle tab-bar-section">
+      <h1 class="title">CS<span class="logo-number">4</span>HS</h1>
+    </section>
+</nav>
+<div class="row" id="row-content">
+<div class="small-4 columns text-center">
+  <h2>Sponsors</h2>
+  <ul id="sponsor-slideshow" class="text-center">
+    <li><img src="./img/google-logo-colour.png"></img></li>
+    <li><img src="./img/canterbury-logo.png"></img></li>
+    <li><img src="./img/catalyst-logo.png"></img></li>
+    <li><img src="./img/nzacditt-logo.png"></img></li>
+    <li><img src="./img/microsoft-logo.png"></img></li>
+  </ul>
+
+  <h2>Updates</h2>
+  <a class="twitter-timeline"
+     href="https://twitter.com/UCCSEd"
+     data-widget-id="525448302553083904"
+     data-chrome="noheader nofooter noscrollbar transparent"
+     height="1200">
+  </a>
+</div>
+<div class="small-4 columns">
+    {% raw %}
+    <div id="current">
+    <script id="schedule-template" type="text/x-handlebars-template">
+      <div class="event">
+      {{#ifSameDate cells.DateTimeStart}}
+      <h2 class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h3>
+      {{/ifSameDate}}
+      {{#ifDifferentTimeLine cells.DateTimeStart}}
+      <span class="small-12 columns underline"></span>
+      {{else}}
+      <span class="small-8 small-offset-2 medium-10 medium-offset-2 columns underline"></span>
+      {{/ifDifferentTimeLine}}
+      <div class="row current-event">
+          <span class="small-12 medium-4 columns medium-text-right">
+              {{#ifDifferentTime cells.DateTimeStart}}
+              <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
+              <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
+              {{else}}
+              <h4 class="text-center">or</h4>
+              {{/ifDifferentTime}}
+              <p>
+              {{#if cells.Location}}
+              <b>Location:</b> {{cells.Location}}
+              {{/if}}
+              {{#if cells.Speaker}}
+              <br><b>Presenter:</b> {{cells.Speaker}}
+              {{/if}}
+              </p>
+          </span>
+          <span class="small-12 medium-8 columns">
+              <h4>{{cells.Title}}</h4>
+              <p class="description">{{cells.Description}}</p>
+          </span>
+      </div>
+      </div>
+    </script>
+    </div>
+    {% endraw %}
+    <div id="schedule-loading">
+        <h3 class="text-center">Loading events...</h3>
+    </div>
+</div>
+
+<div class="small-4 columns text-center">
+  <h2>#CS4HSchch</h2>
+  <a class="twitter-timeline"
+     data-dnt="true"
+     href="https://twitter.com/hashtag/CS4HSchch"
+     data-widget-id="522159625521487872"
+     data-chrome="noheader nofooter noscrollbar transparent"
+     height="1200">
+  </a>
+</div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<!-- Load Moment.js -->
+<script src="./js/moment.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var source = $('#schedule-template').html();
+  var CurrentTemplate = Handlebars.compile(source);
+
+  var defaultDate = new Date(500);
+  var SameDate = defaultDate;
+  var SameDateTime = defaultDate;
+  var Time = defaultDate;
+  var TimeLine = defaultDate;
+
+  function parseDate(date_string) {
+      date = date_string.slice(5,-1);
+      date = date.split(',');
+      date = new Date(date[0], date[1], date[2], date[3], date[4], date[5]);
+      return date;
+  }
+
+  Handlebars.registerHelper("prettifyDate", function(timestamp, formatString) {
+      timestamp = parseDate(timestamp);
+      return moment(timestamp).format(formatString);
+  });
+
+  Handlebars.registerHelper('ifSameDate', function(v1, options) {
+      v1 = parseDate(v1);
+      if(v1.getDate() !== SameDate.getDate()) {
+          SameDate = v1;
+          return options.fn(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTime', function(v1, options) {
+      v1 = parseDate(v1);
+      if(v1 !== Time) {
+          Time = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifDifferentTimeLine', function(v1, options) {
+      v1 = parseDate(v1);
+      if(v1 !== TimeLine) {
+          TimeLine = v1;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+
+  var now = moment().format('YYYY-MM-DD HH:mm:ss');
+
+  // Load an entire sheet.
+  $('#current').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/15y3r_9IPnL9d6fa61T7-RtTQqyJc_Y2gXIJ9oGc_Y_w/edit#gid=0',
+      query: 'select A,B,C,D,E,F where B >= datetime "' + now + '"',
+      rowTemplate: CurrentTemplate,
+      callback: removeLoading
+  });
+
+  function removeLoading() {
+      $("#schedule-loading").addClass('hide');
+  }
+</script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- Slideshow script -->
+<script type="text/javascript" src="./js/responsiveslides.min.js"></script>
+<script>
+  $(function() {
+    $("#sponsor-slideshow").responsiveSlides({
+      auto: true,             // Boolean: Animate automatically, true or false
+      speed: 500,             // Integer: Speed of the transition, in milliseconds
+      timeout: 4000,         // Integer: Time between slide transitions, in milliseconds
+      pager: false,           // Boolean: Show pager, true or false
+      nav: false,             // Boolean: Show navigation, true or false
+      random: false,          // Boolean: Randomize the order of the slides, true or false
+      pause: false,           // Boolean: Pause on hover, true or false
+      pauseControls: false    // Boolean: Pause when hovering controls, true or false
+  });
+});
+</script>
+{% endblock scripts %}

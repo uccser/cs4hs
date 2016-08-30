@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="small-12 large-6 columns">
+  <h2>About</h2>
+
+  <p>There are two independent CS4HS workshops running throughout New Zealand in 2016. Our workshops in Christchurch are focused on the Computer Science and Programming Achievement standards, for teachers who are at beginner/intermediate level, so the discussions will be more focussed on getting started.</p>
+
+  <p>The focus of the Victoria University of Wellington CS4HS workshop will be to provide more advanced programming, algorithmics, computational thinking and robotics professional development to New Zealand high school teachers, and create take-away resources that they can apply to encourage and challenge their mid-range and excellent students at years 11-13.</p>
+
+  <p>The events are independent and are covering different areas, so it's fine to apply to go to more than one (if you have the time!).</p>
+
+  <h2>Useful Links</h2>
+  <h4>Contact</h4>
+  <p>For general and website enquiries: <a href="mailto:csse-teacher-events@canterbury.ac.nz">csse-teacher-events@canterbury.ac.nz</a>.</p>
+  <p>Contact information for workshop leaders can be found on the <a href="people.html">People page</a>.</p>
+
+  <h4>Previous Christchurch CS4HS Workshops Websites</h4>
+  <p><a href="./2015/index.html">2015 workshops website</a></p>
+  <p><a href="./2014/index.html">2014 workshops website</a></p>
+  <p><a href="./2013/index.html">2013 workshops website</a></p>
+
+  <h4>Other New Zealand CS4HS Workshops</h4>
+  <p><a href="http://ecs.victoria.ac.nz/Events/CS4HS2016"><strong>Wellington</strong> - Wed 7th Dec to Fri 9th December 2016</a></p>
+</div>
+<div class="small-12 large-6 columns">
+  <h2>Frequently Asked Questions</h2>
+
+  {% raw %}
+  <div id="faq">
+  <script id="faq-template" type="text/x-handlebars-template">
+      <h4>{{cells.Question}}</h4>
+      <p>{{cells.Answer}}</p>
+  </script>
+  </div>
+  {% endraw %}
+  <div id="faq-loading">
+      <h4 class="text-center">Loading FAQ...</h4>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var faqTemplate = Handlebars.compile($('#faq-template').html());
+  // Load an entire sheet.
+  $('#faq').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1IVSUMAVlk2jbmRhBUf550zL2IKt9-HI-T3lN3XTqxE8/edit#gid=0',
+      query: 'select A,B',
+      rowTemplate: faqTemplate,
+      callback: removeLoading
+  });
+  function removeLoading() {
+      $("#faq-loading").addClass('hide');
+  }
+</script>
+{% endblock scripts %}

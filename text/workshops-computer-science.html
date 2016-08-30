@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}Computer Science Workshops{% endblock %}
+
+{% block content %}
+<div class="small-12 columns workshops">
+  <h1>Computer Science Workshops</h1>
+
+  <p>These workshops occur on the Wednesday, Thursday, and Friday during the main event. If you struggle to find a workshop that suits you best, please <a href="mailto:csse-teacher-events@canterbury.ac.nz">contact us</a>.</p>
+
+  <h2>Workshops available</h2>
+  <p>Click a link to see the full details about the workshop:</p>
+  <ul>
+    <li><a href="#cs-1-2">Computer Science Workshop - Level 1 &amp; 2</a></li>
+    <li><a href="#cs-3">Computer Science Workshop - Level 3</a></li>
+  </ul>
+
+  <h2>Workshop details</h2>
+
+  <div class="panel radius clearfix" id="cs-1-2">
+    <div class="text-center">
+      <img src="./img/canterbury-logo.png" class="logo text-center" style="max-height:6em;"></img>
+      <h3>Computer Science Workshop - Level 1 &amp; 2</h3>
+      <h5>AS91074 and AS91371</h5>
+    </div>
+
+    <div class="row">
+      <div class="small-12 medium-6 columns">
+        <h4>Workshop description</h4>
+        <p>This workshop is aimed for educators planning on teaching Computer Science at NCEA level 1 &amp; 2. This workshop starts with an introduction to the topic then splits into two groups.</p>
+
+        <p>For those who have never used the level 1 Computer Science standard before (1.44/AS91074) Caitlin will go over the purpose of this standard, investigate the topic, show some examples of how to get students engaged with the ideas in it, and cover the teacher assessment guides. Recommended for first timers.</p>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <p>For those who have had an introduction to Computer Science and wish to cover level 1 and 2 (1.44/AS91074 and 2.44/AS91371) at a faster pace over the three days. Tim will cover the content, provide steps on how to teach concepts, and introduce the assessment guides.</p>
+
+        <p>This workshop is recommended for those who have never taught Computer Science before to those who want a refresher on levels 1 &amp; 2.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel radius clearfix" id="cs-3">
+    <div class="text-center">
+      <img src="./img/canterbury-logo.png" class="logo text-center" style="max-height:6em;"></img>
+      <h3>Computer Science Workshop - Level 3</h3>
+      <h5>AS91636</h5>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>Workshop description</h4>
+        <p>For those who are interested in level 3 (3.44/AS91636), this workshop will provide refresher on available Computer Science topics, guidance on using the material for assessments, and allow time for you to discuss with other educators about their experiences.</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

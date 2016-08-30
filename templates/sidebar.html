@@ -1,22 +1,37 @@
 {% set navigation_bar = [
-    ('register.html', 'icon-register', 'Register'),
-    ('schedule.html', 'icon-schedule', 'Schedule'),
-    ('workshops.html', 'icon-workshops', 'Workshops'),
-    ('location.html', 'icon-location', 'Location'),
-    ('accommodation.html', 'icon-accommodation', 'Accommodation'),
-    ('transport.html', 'icon-transport', 'Transport'),
-    ('resources.html', 'icon-resources', 'Resources'),
-    ('discussion.html', 'icon-discussions', 'Discussion'),
-    ('people.html', 'icon-people', 'People'),
-    ('about.html', 'icon-about', 'About'),
+    ('register.html', 'icon-register', 'Register', []),
+    ('schedule.html', 'icon-schedule', 'Schedule', []),
+    ('workshops.html', 'icon-workshops', 'Workshops', [
+      ('workshops-programming.html', 'Programming Workshops'),
+      ('workshops-computer-science.html', 'Computer Science Workshops'),
+      ('workshops-teaching.html', 'Teaching Workshops'),
+    ]),
+    ('location.html', 'icon-location', 'Location', []),
+    ('accommodation.html', 'icon-accommodation', 'Accommodation', []),
+    ('transport.html', 'icon-transport', 'Transport', []),
+    ('resources.html', 'icon-resources', 'Resources', []),
+    ('discussion.html', 'icon-discussions', 'Discussion', []),
+    ('people.html', 'icon-people', 'People', []),
+    ('about.html', 'icon-about', 'About', []),
 ] -%}
 {% set active_page = active_page -%}
 
-{% for href, icon, name in navigation_bar %}
+{% for href, icon, name, subitems in navigation_bar %}
   <li>
     <a href="{{ href }}" alt="{{ name }}">
         <div class="link-icon {{ icon }}" alt="{{ name }}"></div>
         <div class="link-text">{{ name }}</div>
+        {% if subitems %}
+            <ul>
+            {% for href, name in subitems %}
+                <li>
+                  <a href="{{ href }}" alt="{{ name }}">
+                    <div class="link-text sub-link-text">{{ name }}</div>
+                  </a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
     </a>
   </li>
 {% endfor %}
