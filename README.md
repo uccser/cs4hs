@@ -8,21 +8,23 @@ Running `generate.py` will produce all the necessary files for the website, that
 
     cs4hs/
     ├── css/
-    │   └── CSS files
+    │   └── Files to style the website output
     ├── files/
-    │   └── Files available for users to download
+    │   └── Files available for users to download through the website
     ├── img/
-    │   └── Images files
+    │   └── Images to display on the website
     ├── js/
-    │   └── JavaScript files
+    │   └── JavaScript used in the website output
     ├── output/
     │   └── Files and folders produced by the website generator (ignored by Git)
     ├── templates/
     │   └── HTML files used by the template engine Jinja2
+    ├── text/
+    │   └── HTML files used to create pages by the template engine Jinja2
+    ├── .gitignore
     ├── generate.py
     ├── LICENSE
-    ├── README.md
-    └── HTML files to be processed
+    └── README.md
 
 ### Why use a template engine?
 
@@ -30,8 +32,7 @@ Over the past few years the CS4HS website has been created with 'hard coded' pag
 
 ### Future plans
 
-- Minify CSS on output.
-- Use SCSS for managing CSS.
+- Switch to an existing static site generator (Middleman, Jekyll, etc)
 
 ## Usage
 
