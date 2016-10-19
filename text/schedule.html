@@ -54,7 +54,7 @@
 
           <span class="small-12 medium-8 columns">
               <h4>{{cells.Title}}</h4>
-              <p class="description">{{cells.Description}}</p>
+              <p class="description">{{{cells.Description}}}</p>
           </span>
       </div>
 
@@ -100,16 +100,6 @@
       }
   });
 
-  // Handlebars.registerHelper('ifDifferentTime', function(v1, options) {
-  //     v1 = parseDate(v1);
-  //     if(v1 !== Time) {
-  //         Time = v1;
-  //         return options.fn(this);
-  //     } else {
-  //         return options.inverse(this);
-  //     }
-  // });
-  //
   Handlebars.registerHelper('ifLaterTime', function(datestring, options) {
       date = momentDateString(datestring);
       if(date.isAfter(currentTime)) {
