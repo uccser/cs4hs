@@ -58,9 +58,11 @@
 .display-three-large-text {
   font-size: 20rem;
   padding-bottom: 5rem;
+  color: white !important;
 }
 .display-three-small-text {
   font-size: 7rem;
+  color: white !important;
 }
 .display-three-align {
   display: table-cell;
