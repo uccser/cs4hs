@@ -74,3 +74,9 @@
 #display-three-body {
   overflow: hidden;
 }
+.branded-header {
+  background-color: #0a83bb;
+}
+.title {
+  color: white;
+}

@@ -1,0 +1,182 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="css/display.css">
+  <!-- Reload page every 5 minutes to refresh timetable -->
+  <meta http-equiv="refresh" content="300">
+{% endblock head %}
+
+{% block body_start %}
+<body id="display-three-body">
+{% endblock body_start %}
+
+{% block body %}
+<div class="row">
+<div class="small-4 small-offset-4 columns no-padding">
+  <div class="small-12 columns text-center branded-header">
+      <h1 class="title">CS<span class="logo-number">4</span>HS Christchurch</h1>
+  </div>
+  <h1 class="text-center">Upcoming Events</h1>
+  {% raw %}
+  <div id="schedule">
+  <script id="schedule-template" type="text/x-handlebars-template">
+    <div class="event">
+      {{#ifLaterDay cells.DateTimeStart}}
+      <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h2>
+      {{/ifLaterDay}}
+
+      {{#ifLaterTime cells.DateTimeStart}}
+      <span class="small-12 columns underline"></span>
+      <div class="row current-event">
+          <span class="small-12 medium-4 columns medium-text-right">
+            <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
+            <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
+      {{else}}
+      <span class="small-8 small-offset-2 medium-8 medium-offset-4 columns underline"></span>
+      <div class="row current-event">
+          <span class="small-12 medium-4 columns medium-text-right">
+            <h4 class="text-right">or</h4>
+      {{/ifLaterTime}}
+              <p>
+              {{#if cells.Location}}
+              <b>Location:</b> {{cells.Location}}
+              {{/if}}
+
+              {{#if cells.Presenter}}
+              <br><b>Presenter:</b> {{cells.Presenter}}
+              {{/if}}
+              </p>
+          </span>
+
+          <span class="small-12 medium-8 columns">
+              <h4>{{cells.Title}}</h4>
+              <p class="description">{{{cells.Description}}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </script>
+  </div>
+  {% endraw %}
+
+  <div id="schedule-loading" class="text-center">
+      <h3>Loading events...</h3>
+  </div>
+</div>
+<div class="small-4 columns text-center no-padding">
+  <div class="row">
+    <div class="small-12 columns text-center branded-header">
+        <h1 class="title">28 Nov - 2 Dec 2016</h1>
+    </div>
+    <div class="small-6 columns text-center">
+      <h2>Sponsors</h2>
+      <ul id="sponsor-slideshow" class="text-center">
+        <li><img src="./img/uc-computer-science-education-logo.png"></img></li>
+        <li><img src="./img/google-logo-colour.png"></img></li>
+        <li><img src="./img/catalyst-logo.png"></img></li>
+        <li><img src="./img/microsoft-logo.png"></img></li>
+        <li><img src="./img/telogis-logo.png" style="max-height:6em;"></img></li>
+        <li><img src="./img/orion-health-logo.png" style="max-height:6em;"></img></li>
+        <li><img src="./img/tait-logo.png" style="max-height:8em;"></img></li>
+        <li><img src="./img/nzacditt-logo.png"></img></li>
+        <li><img src="./img/itp-logo.png"></img></li>
+      </ul>
+
+      <h2>Updates</h2>
+      <a class="twitter-timeline"
+         href="https://twitter.com/UCCSEd"
+         data-widget-id="525448302553083904"
+         data-chrome="noheader nofooter noscrollbar transparent"
+         height="1200">
+      </a>
+    </div>
+    <div class="small-6 columns text-center">
+      <h2>#CS4HSchch</h2>
+      <a class="twitter-timeline"
+         data-dnt="true"
+         href="https://twitter.com/hashtag/CS4HSchch"
+         data-widget-id="522159625521487872"
+         data-chrome="noheader nofooter noscrollbar transparent"
+         height="1200">
+      </a>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<!-- Load Moment.js -->
+<script src="./js/moment.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var scheduleTemplate = Handlebars.compile($('#schedule-template').html());
+  var currentDate = new moment("2013-02-08");
+  var currentTime = new moment("2013-02-08");
+
+  function momentDateString(date_string) {
+      return moment(date_string, "DD/MM/YYYY HH:mm:ss");
+  }
+
+  Handlebars.registerHelper("prettifyDate", function(datestring, formatString) {
+      var string = momentDateString(datestring).format(formatString);
+      return string;
+  });
+
+  Handlebars.registerHelper('ifLaterDay', function(datestring, options) {
+      date = momentDateString(datestring);
+      if(date.isAfter(currentDate, 'day')) {
+          currentDate = date;
+          return options.fn(this);
+      }
+  });
+
+  Handlebars.registerHelper('ifLaterTime', function(datestring, options) {
+      date = momentDateString(datestring);
+      if(date.isAfter(currentTime)) {
+          currentTime = date;
+          return options.fn(this);
+      } else {
+          return options.inverse(this);
+      }
+  });
+  var now = moment().format('YYYY-MM-DD HH:mm:ss');
+
+  // Load an entire sheet.
+  $('#schedule').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/12PCYPgw8HFWddovhySfnXFbdbhB6u_otSbJ2JXLMlYM/edit#gid=0',
+      query: 'select A,B,C,D,E,F where B >= datetime "' + now + '"',
+      rowTemplate: scheduleTemplate,
+      reset: true,
+      callback: removeLoading
+  });
+
+  function removeLoading() {
+      $("#schedule-loading").addClass('hide');
+  }
+</script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- Slideshow script -->
+<script type="text/javascript" src="./js/responsiveslides.min.js"></script>
+<script>
+  $(function() {
+    $("#sponsor-slideshow").responsiveSlides({
+      auto: true,             // Boolean: Animate automatically, true or false
+      speed: 500,             // Integer: Speed of the transition, in milliseconds
+      timeout: 4000,         // Integer: Time between slide transitions, in milliseconds
+      pager: false,           // Boolean: Show pager, true or false
+      nav: false,             // Boolean: Show navigation, true or false
+      random: false,          // Boolean: Randomize the order of the slides, true or false
+      pause: false,           // Boolean: Pause on hover, true or false
+      pauseControls: false    // Boolean: Pause when hovering controls, true or false
+  });
+});
+</script>
+{% endblock scripts %}
