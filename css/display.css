@@ -78,5 +78,34 @@
   background-color: #0a83bb;
 }
 .title {
-  color: white;
+  color: white !important;
+}
+.bold-heading {
+  font-weight: bold;
+  font-size: 4em;
+}
+.erskine-screens .underline {
+  border-bottom-width: 4px !important;
+  margin: 0.5em 1em;
+}
+.erskine-screens .event-day {
+  font-size: 3.5em;
+}
+.erskine-screens .event-time {
+  line-height: 1 !important;
+  font-size: 2.6em;
+  font-weight: bold;
+}
+.erskine-screens .event-title {
+  line-height: 1.1 !important;
+  font-size: 2.6em;
+}
+.erskine-screens .event-details {
+  font-size: 2em;
+}
+.timeline-Widget {
+  font-size: 5em !important;
+}
+a.twitter-timeline {
+
 }

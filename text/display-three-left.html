@@ -8,102 +8,109 @@
 {% endblock head %}
 
 {% block body_start %}
-<body id="display-three-body">
+<body id="display-three-body" class="erskine-screens">
 {% endblock body_start %}
 
 {% block body %}
 <div class="row">
-<div class="small-4 small-offset-4 columns no-padding">
-  <div class="small-12 columns text-center branded-header">
-      <h1 class="title">CS<span class="logo-number">4</span>HS Christchurch</h1>
+  <div class="small-4 columns no-padding">
+    <div class="display-three-background">
+    </div>
   </div>
-  <h1 class="text-center">Upcoming Events</h1>
-  {% raw %}
-  <div id="schedule">
-  <script id="schedule-template" type="text/x-handlebars-template">
-    <div class="event">
-      {{#ifLaterDay cells.DateTimeStart}}
-      <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h2>
-      {{/ifLaterDay}}
+  <div class="small-4 columns no-padding">
+    <div class="row">
+      <div class="small-4 columns no-padding">
+        <div class="display-three-background">
+          <div class="display-three-align text-center">
+            <h1 class="title" style="font-size:11em">CS<span class="logo-number">4</span>HS</h1>
+            <h4 class="title" style="font-size:5.5em">Christchurch</h4>
+            <h4 class="title" style="font-size:4.8em">28 Nov - 2 Dec</h4>
+          </div>
+        </div>
+      </div>
+      <div class="small-8 columns no-padding">
+        <h1 class="bold-heading text-center">Upcoming Events</h1>
+        {% raw %}
+        <div id="schedule">
+        <script id="schedule-template" type="text/x-handlebars-template">
+          <div class="event">
+            {{#ifLaterDay cells.DateTimeStart}}
+            <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center event-day"><strong>{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</strong></h2>
+            {{/ifLaterDay}}
 
-      {{#ifLaterTime cells.DateTimeStart}}
-      <span class="small-12 columns underline"></span>
-      <div class="row current-event">
-          <span class="small-12 medium-4 columns medium-text-right">
-            <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
-            <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
-      {{else}}
-      <span class="small-8 small-offset-2 medium-8 medium-offset-4 columns underline"></span>
-      <div class="row current-event">
-          <span class="small-12 medium-4 columns medium-text-right">
-            <h4 class="text-right">or</h4>
-      {{/ifLaterTime}}
-              <p>
-              {{#if cells.Location}}
-              <b>Location:</b> {{cells.Location}}
-              {{/if}}
+            {{#ifLaterTime cells.DateTimeStart}}
+            <span class="small-12 columns underline"></span>
+            <div class="row current-event">
+                <span class="small-2 columns text-right">
+                  <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
+                  <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
+            {{else}}
+            <span class="small-10 small-offset-2 columns underline"></span>
+            <div class="row current-event">
+                <span class="small-2 columns text-right">
+                  <h3 class="event-time">or</h3>
+            {{/ifLaterTime}}
+                </span>
+                <span class="small-10 columns">
+                    <h3 class="event-title">{{cells.Title}}</h3>
+                    <h3 class="event-details">
+                      {{#if cells.Location}}
+                      <b>Location:</b> {{cells.Location}}
+                      {{/if}}
+                      {{#if cells.Presenter}}
+                      <b{{#if cells.Location}} style="padding-left:1em"{{/if}}>Presenter:</b> {{cells.Presenter}}
+                      {{/if}}
+                    </h3>
+                </span>
+              </div>
+            </div>
+          </div>
+        </script>
+        </div>
+        {% endraw %}
 
-              {{#if cells.Presenter}}
-              <br><b>Presenter:</b> {{cells.Presenter}}
-              {{/if}}
-              </p>
-          </span>
-
-          <span class="small-12 medium-8 columns">
-              <h4>{{cells.Title}}</h4>
-              <p class="description">{{{cells.Description}}}</p>
-          </span>
+        <div id="schedule-loading" class="text-center">
+            <h3>Loading events...</h3>
         </div>
       </div>
     </div>
-  </script>
   </div>
-  {% endraw %}
+  <div class="small-2 columns text-center no-padding">
+    <h1 class="bold-heading">Sponsors</h1>
+    <ul id="sponsor-slideshow" class="text-center">
+      <li><img src="./img/uc-computer-science-education-logo.png" style="max-height:7em;"></img></li>
+      <li><img src="./img/google-logo-colour.png" style="max-height:7em;"></img></li>
+      <li><img src="./img/catalyst-logo.png" style="height:5em;"></img></li>
+      <li><img src="./img/microsoft-logo.png" style="max-height:7em;"></img></li>
+      <li><img src="./img/telogis-logo.png" style="max-height:7em;"></img></li>
+      <li><img src="./img/orion-health-logo.png" style="max-height:9em;"></img></li>
+      <li><img src="./img/tait-logo.png" style="max-height:9em;"></img></li>
+      <li><img src="./img/nzacditt-logo.png" style="height:7em;"></img></li>
+      <li><img src="./img/itp-logo.png" style="height:8em;"></img></li>
+    </ul>
 
-  <div id="schedule-loading" class="text-center">
-      <h3>Loading events...</h3>
+    <h1 class="bold-heading">Updates</h1>
+    <a class="twitter-timeline"
+       href="https://twitter.com/UCCSEd"
+       data-widget-id="525448302553083904"
+       data-chrome="noheader nofooter noscrollbar transparent"
+       data-width="700"
+       data-height="1080"
+       border-color="#e88f0c">
+    </a>
   </div>
-</div>
-<div class="small-4 columns text-center no-padding">
-  <div class="row">
-    <div class="small-12 columns text-center branded-header">
-        <h1 class="title">28 Nov - 2 Dec 2016</h1>
-    </div>
-    <div class="small-6 columns text-center">
-      <h2>Sponsors</h2>
-      <ul id="sponsor-slideshow" class="text-center">
-        <li><img src="./img/uc-computer-science-education-logo.png"></img></li>
-        <li><img src="./img/google-logo-colour.png"></img></li>
-        <li><img src="./img/catalyst-logo.png"></img></li>
-        <li><img src="./img/microsoft-logo.png"></img></li>
-        <li><img src="./img/telogis-logo.png" style="max-height:6em;"></img></li>
-        <li><img src="./img/orion-health-logo.png" style="max-height:6em;"></img></li>
-        <li><img src="./img/tait-logo.png" style="max-height:8em;"></img></li>
-        <li><img src="./img/nzacditt-logo.png"></img></li>
-        <li><img src="./img/itp-logo.png"></img></li>
-      </ul>
-
-      <h2>Updates</h2>
-      <a class="twitter-timeline"
-         href="https://twitter.com/UCCSEd"
-         data-widget-id="525448302553083904"
-         data-chrome="noheader nofooter noscrollbar transparent"
-         height="1200">
-      </a>
-    </div>
-    <div class="small-6 columns text-center">
-      <h2>#CS4HSchch</h2>
-      <a class="twitter-timeline"
-         data-dnt="true"
-         href="https://twitter.com/hashtag/CS4HSchch"
-         data-widget-id="522159625521487872"
-         data-chrome="noheader nofooter noscrollbar transparent"
-         height="1200">
-      </a>
-    </div>
+  <div class="small-2 columns text-center">
+    <h1 class="bold-heading">#CS4HSchch</h1>
+    <a class="twitter-timeline"
+       data-dnt="true"
+       href="https://twitter.com/hashtag/CS4HSchch"
+       data-widget-id="522159625521487872"
+       data-chrome="noheader nofooter noscrollbar transparent"
+       data-width="700"
+       data-height="1080"
+       border-color="#e88f0c">
+    </a>
   </div>
-</div>
-
 </div>
 {% endblock body %}
 
