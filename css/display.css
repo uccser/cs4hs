@@ -86,7 +86,7 @@
 }
 .erskine-screens .underline {
   border-bottom-width: 4px !important;
-  margin: 0.5em 1em;
+  margin: 0.5em 0;
 }
 .erskine-screens .event-day {
   font-size: 3.5em;
@@ -105,7 +105,4 @@
 }
 .timeline-Widget {
   font-size: 5em !important;
-}
-a.twitter-timeline {
-
 }
