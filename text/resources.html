@@ -8,60 +8,42 @@
 
   <p>Throughout the workshop, useful links or resources to materials from talks will be listed here.</p>
 
-  <div class="row resource-list">
-    <div class="small-12 large-4 columns">
-      <h3>CS4HS Links &amp; General Slides</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
-      <h3>Computer Science</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-    <div class="small-12 large-4 columns">
-      <h3>Programming</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
-      <h3>Teaching Workshops</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-    <div class="small-12 large-4 columns">
-      <h3>Support Courses &amp; Workshops</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
-      <h3>Student Opportunities</h3>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
-      <h3>Other</h3>
-      <ul>
-      	<li><a href="http://www.canterbury.ac.nz/theuni/maps/">UC Campus Maps</a></li>
-      	<li><a href="http://www.cosc.canterbury.ac.nz/dept/building/maps/">Erskine Building Floor Plans</a></li>
-      	<li></li>
-      </ul>
-    </div>
+  <div id="resources" class="row">
+    {% raw %}
+    <script id="resources-template" type="text/x-handlebars-template">
+      {{#if cells.Name}}
+      <a class="resource-item"
+        {{#if cells.Link}} href="{{cells.Link}}" target="_blank"{{/if}}>
+        <strong>{{cells.Name}}</strong>{{#if cells.Description}} - {{cells.Description}}{{/if}}
+      </a>
+      {{/if}}
+    </script>
+    {% endraw %}
   </div>
 
+  <div id="resources-loading">
+      <h4 class="text-center">Loading resources...</h4>
+  </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+<!-- Load Handlebars.js -->
+<script src="./js/sheetrock.min.js"></script>
+<!-- Load Handlebars.js -->
+<script src="./js/handlebars.min.js"></script>
+<script type="text/javascript">
+  // Compile the Handlebars template.
+  var resourcesTemplate = Handlebars.compile($('#resources-template').html());
+  // Load an entire sheet.
+  $('#resources').sheetrock({
+      url: 'https://docs.google.com/spreadsheets/d/1PlZwWBcwTZNRlLYpJQP0T0cfrqlgfd0cZJ8wMmJypRg/edit#gid=0',
+      query: 'select A, B, C',
+      rowTemplate: resourcesTemplate,
+      callback: removeLoading
+  });
+  function removeLoading() {
+      $("#resources-loading").addClass('hide');
+  }
+</script>
+{% endblock scripts %}
