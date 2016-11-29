@@ -7,6 +7,10 @@
   <meta http-equiv="refresh" content="300">
 {% endblock head %}
 
+{% block body_start %}
+<body id="hidden-overflow" class="single-screen">
+{% endblock body_start %}
+
 {% block body %}
 <nav class="tab-bar">
     <section class="middle tab-bar-section">
@@ -42,35 +46,33 @@
       <script id="schedule-template" type="text/x-handlebars-template">
         <div class="event">
           {{#ifLaterDay cells.DateTimeStart}}
-          <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h2>
+          <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h2>
           {{/ifLaterDay}}
 
           {{#ifLaterTime cells.DateTimeStart}}
           <span class="small-12 columns underline"></span>
           <div class="row current-event">
-              <span class="small-12 medium-4 columns medium-text-right">
+              <span class="small-3 columns text-right">
                 <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
                 <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
           {{else}}
-          <span class="small-8 small-offset-2 medium-8 medium-offset-4 columns underline"></span>
+          <span class="small-10 small-offset-2 columns underline"></span>
           <div class="row current-event">
-              <span class="small-12 medium-4 columns medium-text-right">
-                <h4 class="text-right">or</h4>
+              <span class="small-3 columns text-right">
+                <h3 class="event-time">or</h3>
           {{/ifLaterTime}}
-                  <p>
-                  {{#if cells.Location}}
-                  <b>Location:</b> {{cells.Location}}
-                  {{/if}}
-
-                  {{#if cells.Presenter}}
-                  <br><b>Presenter:</b> {{cells.Presenter}}
-                  {{/if}}
-                  </p>
               </span>
-
-              <span class="small-12 medium-8 columns">
-                  <h4>{{cells.Title}}</h4>
-                  <p class="description">{{{cells.Description}}}</p>
+              <span class="small-9 columns">
+                  <h3 class="event-title">{{cells.Title}}</h3>
+                  <h3 class="event-details">
+                    {{#if cells.Location}}
+                    <b>Location:</b> {{cells.Location}}
+                    {{/if}}
+                    {{#if cells.Presenter}}
+                    {{#if cells.Location}}<br>{{/if}}
+                    <b>Presenter:</b> {{cells.Presenter}}
+                    {{/if}}
+                  </h3>
               </span>
             </div>
           </div>

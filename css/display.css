@@ -71,7 +71,7 @@
 .no-padding {
   padding: 0 !important;
 }
-#display-three-body {
+#hidden-overflow {
   overflow: hidden;
 }
 .branded-header {
@@ -103,9 +103,19 @@
 .erskine-screens .event-details {
   font-size: 2em;
 }
-.timeline-Widget {
-  font-size: 5em !important;
+.single-screen .underline {
+  border-bottom-width: 4px !important;
+  margin: 0.5em 0;
 }
-a.twitter-timeline {
-
+.single-screen .event-time {
+  line-height: 1 !important;
+  font-size: 2.4em;
+  font-weight: bold;
+}
+.single-screen .event-title {
+  line-height: 1.1 !important;
+  font-size: 2em;
+}
+.single-screen .event-details {
+  font-size: 1.5em;
 }
