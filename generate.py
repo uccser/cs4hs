@@ -89,6 +89,10 @@ def main():
         files = os.listdir(TEXT_FOLDER)
         files.remove('pre-index.html')
 
+    # Create output folder if not found
+    if not os.path.exists(OUTPUT_DIRECTORY):
+        os.makedirs(OUTPUT_DIRECTORY)
+
     # Render all HTML files in top directory
     for file in files:
         if file.endswith('.html'):
