@@ -9,12 +9,6 @@ OUTPUT_DIRECTORY = './output/'
 TEXT_FOLDER = './text/'
 FOLDERS_TO_COPY = ['css', 'files', 'img', 'js']
 
-"""Check and install dependencies"""
-import pip
-# Update pip if needed and install dependencies
-pip.main(['install', 'pip>=7.0.3'])
-pip.main(['install', 'jinja2>=2.7.3'])
-
 import os
 import os.path
 import shutil

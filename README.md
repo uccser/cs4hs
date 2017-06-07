@@ -36,12 +36,8 @@ Over the past few years the CS4HS website has been created with 'hard coded' pag
 
 ## Usage
 
+Install `requirements.txt` file using `pip`.
 Run `generate.py` and the website will be located within the the `output` folder.
-
-## Requirements
-
-- Python 3.4 or higher
-- Jinja2 2.7.3 or higher (this is installed by the `generate.py` script if not installed already)
 
 ## Found a problem?
 
