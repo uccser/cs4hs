@@ -6,7 +6,7 @@
   {% block head %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}CS4HS{% endblock %} - CS4HS Christchurch 2016</title>
+  <title>{% block title %}CS4HS{% endblock %} - CS4HS Christchurch 2017</title>
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/foundation.min.css">
   <link rel="stylesheet" type="text/css" href="css/app.css">
@@ -32,16 +32,14 @@
       </section>
   </nav>
   <div id="wrapper">
-      <!-- Sidebar click overlay -->
       <a id="sidebar-overlay"></a>
-      <!-- Sidebar -->
       <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
               <li class="sidebar-brand">
                 <a href="index.html" alt="Home" class="sidebar-brand-link">
                   <h1 class="title white-text">CS<span class="logo-number">4</span>HS</h1>
                   <h5 class="white-text">
-                    28 Nov - 2 Dec, 2016<br>
+                    4 to 8 Dec, 2017<br>
                     Christchurch, New Zealand
                   </h5>
                 </a>
@@ -49,18 +47,15 @@
               {% include 'sidebar.html' %}
           </ul>
       </div>
-      <!-- /#sidebar-wrapper -->
 
-      <!-- Page Content -->
       <div id="page-content-wrapper">
-          <div class="">
-              <div class="row">
-                    {% block content %}
-                    {% endblock content %}
-              </div>
+        <div id="content">
+          <div class="row">
+            {% block content %}
+            {% endblock content %}
           </div>
-          <!-- /#page-content-wrapper -->
-          {% include 'footer.html' %}
+        </div>
+        {% include 'footer.html' %}
       </div>
   </div>
   {% endblock body %}
