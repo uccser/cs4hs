@@ -1,49 +1,11 @@
 {% extends 'layout.html' %}
 
-{% block title %}Resources - CS4HS Christchurch 2015{% endblock %}
+{% block title %}Resources{% endblock %}
 
 {% block content %}
 <div class="small-12 columns">
   <h2>Resources</h2>
 
   <p>Throughout the workshop, useful links or resources to materials from talks will be listed here.</p>
-
-  <div id="resources" class="row">
-    {% raw %}
-    <script id="resources-template" type="text/x-handlebars-template">
-      {{#if cells.Name}}
-      <a class="resource-item"
-        {{#if cells.Link}} href="{{cells.Link}}" target="_blank"{{/if}}>
-        <strong>{{cells.Name}}</strong>{{#if cells.Description}} - {{cells.Description}}{{/if}}
-      </a>
-      {{/if}}
-    </script>
-    {% endraw %}
-  </div>
-
-  <div id="resources-loading">
-      <h4 class="text-center">Loading resources...</h4>
-  </div>
 </div>
 {% endblock content %}
-
-{% block scripts %}
-<!-- Load Handlebars.js -->
-<script src="./js/sheetrock.min.js"></script>
-<!-- Load Handlebars.js -->
-<script src="./js/handlebars.min.js"></script>
-<script type="text/javascript">
-  // Compile the Handlebars template.
-  var resourcesTemplate = Handlebars.compile($('#resources-template').html());
-  // Load an entire sheet.
-  $('#resources').sheetrock({
-      url: 'https://docs.google.com/spreadsheets/d/1PlZwWBcwTZNRlLYpJQP0T0cfrqlgfd0cZJ8wMmJypRg/edit#gid=0',
-      query: 'select A, B, C',
-      rowTemplate: resourcesTemplate,
-      callback: removeLoading
-  });
-  function removeLoading() {
-      $("#resources-loading").addClass('hide');
-  }
-</script>
-{% endblock scripts %}

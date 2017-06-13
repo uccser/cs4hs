@@ -1,125 +1,14 @@
 {% extends 'layout.html' %}
 
-{% block title %}Schedule - CS4HS{% endblock %}
+{% block title %}Schedule{% endblock %}
 
 {% block content %}
 <div class="small-12 columns">
   <h2>Schedule</h2>
 
-  <p>This year the main workshops will run over three days from the 30th November to the 2nd of December, with an optional 2 day workshop running before the main workshops (28th and 29th of November). If it's your first time attending, the main workshops starts at 9am on the Wednesday with a special introduction session. If you are a returning attendee, the start time is 10:30am, however you are welcome to arrive earlier to register. The workshops also finishes officially with lunch on Friday, however an optional unconference event will be running for those with later flights.</p>
-
   <div data-alert class="alert-box warning radius">
-      Schedule of events subject to change.<a href="#" class="close">&times;</a>
+      Schedule of events is yet to be announced!
   </div>
 
-  <p>Jump to:</p>
-    <div class="flex-parent text-center">
-      <a class="schedule-button flex-child-5" href="#day-28">Monday</a>
-      <a class="schedule-button flex-child-5" href="#day-29">Tuesday</a>
-      <a class="schedule-button flex-child-5" href="#day-30">Wednesday</a>
-      <a class="schedule-button flex-child-5" href="#day-1">Thursday</a>
-      <a class="schedule-button flex-child-5" href="#day-2">Friday</a>
-    </div>
-
-  {% raw %}
-  <div id="schedule" class="tabs-content">
-  <script id="schedule-template" type="text/x-handlebars-template">
-    <div class="event">
-      {{#ifLaterDay cells.DateTimeStart}}
-      <h2 id="day-{{prettifyDate cells.DateTimeStart "D"}}" class="text-center event-day">{{prettifyDate cells.DateTimeStart "dddd Do MMMM"}}</h2>
-      {{/ifLaterDay}}
-
-      {{#ifLaterTime cells.DateTimeStart}}
-      <span class="small-12 columns underline"></span>
-      <div class="row current-event">
-          <span class="small-12 medium-4 columns medium-text-right">
-            <h3 class="event-time">{{prettifyDate cells.DateTimeStart "h:mma"}}<br>
-            <small>until {{prettifyDate cells.DateTimeEnd "h:mma"}}</small></h3>
-      {{else}}
-      <span class="small-8 small-offset-2 medium-8 medium-offset-4 columns underline"></span>
-      <div class="row current-event">
-          <span class="small-12 medium-4 columns medium-text-right">
-            <h4 class="text-right">or</h4>
-      {{/ifLaterTime}}
-              <p>
-              {{#if cells.Location}}
-              <b>Location:</b> {{cells.Location}}
-              {{/if}}
-
-              {{#if cells.Presenter}}
-              <br><b>Presenter:</b> {{cells.Presenter}}
-              {{/if}}
-              </p>
-          </span>
-
-          <span class="small-12 medium-8 columns">
-              <h4>{{cells.Title}}</h4>
-              <p class="description">{{{cells.Description}}}</p>
-          </span>
-      </div>
-    </div>
-  </script>
-  </div>
-  {% endraw %}
-
-  <div id="schedule-loading" class="text-center">
-      <h3>Loading events...</h3>
-      <p>If the schedule fails to load, the schedule is also <a href="https://docs.google.com/spreadsheets/d/12PCYPgw8HFWddovhySfnXFbdbhB6u_otSbJ2JXLMlYM/edit#gid=0">available for viewing here</a>.</p>
-  </div>
 </div>
 {% endblock content %}
-
-{% block scripts %}
-<!-- Load Sheetrock.js -->
-<script src="./js/sheetrock.min.js"></script>
-<!-- Load Handlebars.js -->
-<script src="./js/handlebars.min.js"></script>
-<!-- Load Moment.js -->
-<script src="./js/moment.min.js"></script>
-<script type="text/javascript">
-  // Compile the Handlebars template.
-  var scheduleTemplate = Handlebars.compile($('#schedule-template').html());
-  var currentDate = new moment("2013-02-08");
-  var currentTime = new moment("2013-02-08");
-
-  function momentDateString(date_string) {
-      return moment(date_string, "DD/MM/YYYY HH:mm:ss");
-  }
-
-  Handlebars.registerHelper("prettifyDate", function(datestring, formatString) {
-      var string = momentDateString(datestring).format(formatString);
-      return string;
-  });
-
-  Handlebars.registerHelper('ifLaterDay', function(datestring, options) {
-      date = momentDateString(datestring);
-      if(date.isAfter(currentDate, 'day')) {
-          currentDate = date;
-          return options.fn(this);
-      }
-  });
-
-  Handlebars.registerHelper('ifLaterTime', function(datestring, options) {
-      date = momentDateString(datestring);
-      if(date.isAfter(currentTime)) {
-          currentTime = date;
-          return options.fn(this);
-      } else {
-          return options.inverse(this);
-      }
-  });
-
-  // Load an entire sheet.
-  $('#schedule').sheetrock({
-      url: 'https://docs.google.com/spreadsheets/d/12PCYPgw8HFWddovhySfnXFbdbhB6u_otSbJ2JXLMlYM/edit#gid=0',
-      query: 'select A,B,C,D,E,F',
-      rowTemplate: scheduleTemplate,
-      reset: true,
-      callback: removeLoading
-  });
-
-  function removeLoading() {
-      $("#schedule-loading").addClass('hide');
-  }
-</script>
-{% endblock scripts %}
