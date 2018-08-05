@@ -1,3 +1,7 @@
+***This project has been replaced by the [cs4teachers system](https://github.com/uccser/cs4teachers), and has been archived.***
+
+---
+
 # CS4HS Website Generator
 
 This project generates the website for the CS4HS workshops held at the University of Canterbury, New Zealand located at [cosc.canterbury.ac.nz/cs4hs](http://www.cosc.canterbury.ac.nz/cs4hs/index.html).
